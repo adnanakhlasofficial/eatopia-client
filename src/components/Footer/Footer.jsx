@@ -5,10 +5,10 @@ const Footer = () => {
     return (
         <div className="wrapper grid grid-cols-1 lg:grid-cols-3 py-20 gap-12">
             <div className="space-y-2">
-                <h2 className="footer-heading">Eatopia Industries Ltd.</h2>
-                <p className="text-gray-600 dark:text-gray-400">Providing reliable tech since 1992</p>
+                <h2 className="footer-heading">Eatopia - Where Flavor Meets Passion</h2>
+                <p className="text-gray-600 dark:text-gray-400">Join us at Eatopia and experience culinary delights crafted with love and the finest ingredients. Your taste adventure awaits!</p>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 place-self-center">
                 <h2 className="footer-title">Services</h2>
                 <ul className="space-y-2">
                     <li><Link>Branding</Link></li>
@@ -17,7 +17,7 @@ const Footer = () => {
                     <li><Link>Advertisement</Link></li>
                 </ul>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 place-self-center">
                 <h2 className="footer-title">Company</h2>
                 <ul className="space-y-2">
                     <li><Link>About Us</Link></li>

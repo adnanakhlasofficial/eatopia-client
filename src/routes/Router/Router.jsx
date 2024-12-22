@@ -8,6 +8,7 @@ import Gallery from "../../pages/Gallery/Gallery";
 import AddFood from "../../pages/AddFood/AddFood";
 import MyFood from "../../pages/MyFood/MyFood";
 import MyOrders from "../../pages/MyOrders/MyOrders";
+import SecureRouter from "../SecureRouter/SecureRouter";
 
 const router = createBrowserRouter([
     {
@@ -36,15 +37,27 @@ const router = createBrowserRouter([
             },
             {
                 path: "/add-food",
-                element: <AddFood></AddFood>,
+                element: (
+                    <SecureRouter>
+                        <AddFood></AddFood>
+                    </SecureRouter>
+                ),
             },
             {
                 path: "/my-foods",
-                element: <MyFood></MyFood>,
+                element: (
+                    <SecureRouter>
+                        <MyFood></MyFood>
+                    </SecureRouter>
+                ),
             },
             {
                 path: "/my-orders",
-                element: <MyOrders></MyOrders>,
+                element: (
+                    <SecureRouter>
+                        <MyOrders></MyOrders>
+                    </SecureRouter>
+                ),
             },
         ],
     },

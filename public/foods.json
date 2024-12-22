@@ -1,0 +1,173 @@
+[
+    {
+        "name": "Margherita Pizza",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 20,
+        "price": 10.99,
+        "owner_name": "Luigi Bianchi",
+        "owner_email": "luigi.bianchi@example.com",
+        "origin": "Italy",
+        "desc": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Fresh Basil",
+            "Olive Oil",
+            "Salt"
+        ]
+    },
+    {
+        "name": "Pad Thai",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 15,
+        "price": 12.5,
+        "owner_name": "Somchai Chaiya",
+        "owner_email": "somchai.chaiya@example.com",
+        "origin": "Thailand",
+        "desc": [
+            "Rice Noodles",
+            "Shrimp",
+            "Tofu",
+            "Eggs",
+            "Tamarind Paste",
+            "Fish Sauce",
+            "Palm Sugar",
+            "Peanuts"
+        ]
+    },
+    {
+        "name": "Tacos al Pastor",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 30,
+        "price": 8.99,
+        "owner_name": "Carlos Mendoza",
+        "owner_email": "carlos.mendoza@example.com",
+        "origin": "Mexico",
+        "desc": [
+            "Pork",
+            "Pineapple",
+            "Corn Tortillas",
+            "Cilantro",
+            "Onions",
+            "Lime",
+            "Spices"
+        ]
+    },
+    {
+        "name": "Caesar Salad",
+        "image": "",
+        "category": "Salads",
+        "quantity": 25,
+        "price": 7.5,
+        "owner_name": "Julia Roberts",
+        "owner_email": "julia.roberts@example.com",
+        "origin": "United States",
+        "desc": [
+            "Romaine Lettuce",
+            "Parmesan Cheese",
+            "Croutons",
+            "Caesar Dressing",
+            "Anchovies",
+            "Lemon Juice"
+        ]
+    },
+    {
+        "name": "Ramen",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 18,
+        "price": 11.99,
+        "owner_name": "Sakura Yamamoto",
+        "owner_email": "sakura.yamamoto@example.com",
+        "origin": "Japan",
+        "desc": [
+            "Noodles",
+            "Broth",
+            "Pork",
+            "Egg",
+            "Green Onions",
+            "Nori",
+            "Bamboo Shoots"
+        ]
+    },
+    {
+        "name": "Falafel Wrap",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 22,
+        "price": 7.99,
+        "owner_name": "Nadia Ali",
+        "owner_email": "nadia.ali@example.com",
+        "origin": "Middle East",
+        "desc": [
+            "Falafel",
+            "Pita Bread",
+            "Hummus",
+            "Lettuce",
+            "Tomatoes",
+            "Cucumbers",
+            "Tahini Sauce"
+        ]
+    },
+    {
+        "name": "Beef Stroganoff",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 14,
+        "price": 14.5,
+        "owner_name": "Ivan Petrov",
+        "owner_email": "ivan.petrov@example.com",
+        "origin": "Russia",
+        "desc": [
+            "Beef",
+            "Mushrooms",
+            "Onions",
+            "Sour Cream",
+            "Mustard",
+            "Paprika"
+        ]
+    },
+    {
+        "name": "Fish and Chips",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 20,
+        "price": 9.99,
+        "owner_name": "Emily Clark",
+        "owner_email": "emily.clark@example.com",
+        "origin": "United Kingdom",
+        "desc": ["Cod Fish", "Potatoes", "Batter", "Tartar Sauce", "Lemon"]
+    },
+    {
+        "name": "Poutine",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 15,
+        "price": 6.5,
+        "owner_name": "Jacques Tremblay",
+        "owner_email": "jacques.tremblay@example.com",
+        "origin": "Canada",
+        "desc": ["French Fries", "Cheese Curds", "Gravy"]
+    },
+    {
+        "name": "Beef Tacos",
+        "image": "",
+        "category": "Main Course",
+        "quantity": 28,
+        "price": 8.25,
+        "owner_name": "Maria Lopez",
+        "owner_email": "maria.lopez@example.com",
+        "origin": "Mexico",
+        "desc": [
+            "Ground Beef",
+            "Taco Shells",
+            "Lettuce",
+            "Cheese",
+            "Tomatoes",
+            "Sour Cream",
+            "Salsa"
+        ]
+    }
+]

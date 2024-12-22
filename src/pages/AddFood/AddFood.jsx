@@ -65,6 +65,7 @@ const AddFood = () => {
                     >
                         <option disabled>Select Food Category</option>
                         <option value="appetizers">Appetizers</option>
+                        <option value="main-course">Main Course</option>
                         <option value="desserts">Desserts</option>
                         <option value="beverages">Beverages</option>
                         <option value="salads">Salads</option>

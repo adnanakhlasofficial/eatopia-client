@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, user } = useContext(AuthContext);
+    const { state } = useLocation();
+
+    if (user) return <Navigate to={state ? state : "/"}></Navigate>;
 
     const handleLogin = (e) => {
         e.preventDefault();

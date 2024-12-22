@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, user } = useContext(AuthContext);
 
+    if(user) return <Navigate to={"/"}></Navigate>
+    
     const passRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
     const handleRegister = (e) => {
@@ -17,15 +19,14 @@ const Register = () => {
         const displayName = form.name.value;
         const photoURL = form.photo.value;
 
-        // console.log({ email, password, name, photo });
         if (!passRegex.test(password)) alert("Enter password correctly");
 
         createUser(email, password)
             .then((userCredential) => {
-                updateUser({displayName, photoURL})
-                .then(() => {
-                    console.log("profile updated");
-                    console.log(userCredential.user);
+                updateUser({ displayName, photoURL })
+                    .then(() => {
+                        console.log("profile updated");
+                        console.log(userCredential.user);
                     })
                     .catch((err) => {
                         console.log(err);
