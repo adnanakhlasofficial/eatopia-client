@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import useMode from "../../hooks/useMode";
 import { MdOutlineDarkMode, MdOutlineWbSunny } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
     const { changeTheme, mode } = useMode();
+    const { logoutUser, user } = useContext(AuthContext);
 
     return (
         <div className="flex justify-between items-center py-4 wrapper">
@@ -26,11 +29,21 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center justify-center gap-4">
                     <button onClick={changeTheme}>
-                        {mode === "light" ? <MdOutlineDarkMode size={24} /> : <MdOutlineWbSunny size={24} />}
+                        {mode === "light" ? (
+                            <MdOutlineDarkMode size={24} />
+                        ) : (
+                            <MdOutlineWbSunny size={24} />
+                        )}
                     </button>
-                    <Link className="btn" to={"/login"}>
-                        Login
-                    </Link>
+                    {user && user?.email ? (
+                        <button onClick={logoutUser} className="btn">
+                            Logout
+                        </button>
+                    ) : (
+                        <Link className="btn" to={"/login"}>
+                            Login
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>

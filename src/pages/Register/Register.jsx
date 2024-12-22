@@ -1,17 +1,39 @@
 import { Link } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
+    const { createUser, updateUser } = useContext(AuthContext);
+
+    const passRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
     const handleRegister = (e) => {
         e.preventDefault();
 
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const name = form.name.value;
-        const photo = form.photo.value;
+        const displayName = form.name.value;
+        const photoURL = form.photo.value;
 
-        console.log({ email, password, name, photo });
+        // console.log({ email, password, name, photo });
+        if (!passRegex.test(password)) alert("Enter password correctly");
+
+        createUser(email, password)
+            .then((userCredential) => {
+                updateUser({displayName, photoURL})
+                .then(() => {
+                    console.log("profile updated");
+                    console.log(userCredential.user);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
