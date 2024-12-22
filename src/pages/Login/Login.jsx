@@ -31,7 +31,7 @@ const Login = () => {
                     <button className="btn w-full mt-8">Sign In</button>
                 </div>
             </form>
-            <SocialLogin></SocialLogin>
+            <SocialLogin text="Sign In"></SocialLogin>
             <div className="mt-4 text-center">
                 <p className="font-medium">Don&apos;t have an account? <Link className="text-blue-600 hover:underline underline-offset-2 underline-blue-500" to={"/register"}>Sign Up</Link></p>
             </div>
