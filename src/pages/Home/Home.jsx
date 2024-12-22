@@ -1,4 +1,5 @@
 import About from "../../components/About/About";
+import App from "../../components/App/App";
 import Carousel from "../../components/Carousel/Carousel";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <>
             <Carousel></Carousel>
             <About></About>
+            <App></App>
         </>
     );
 };

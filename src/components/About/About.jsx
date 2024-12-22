@@ -2,11 +2,11 @@ import aboutImg from "../../assets/images/about.png";
 
 const About = () => {
     return (
-        <div className="wrapper flex justify-center items-center flex-col lg:flex-row-reverse gap-16 my-12">
-            <div>
+        <div className="wrapper flex items-center justify-around flex-col lg:flex-row-reverse gap-16 my-20">
+            <div className="w-1/2 grid place-items-center">
                 <img src={aboutImg} alt="" />
             </div>
-            <div className="w-1/2">
+            <div>
                 <h2 className="text-lg font-semibold text-slate-600 dark:text-gray-400">
                     About Us
                 </h2>
