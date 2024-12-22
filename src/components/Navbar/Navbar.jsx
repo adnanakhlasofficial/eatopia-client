@@ -6,13 +6,13 @@ const Navbar = () => {
     const { changeTheme, mode } = useMode();
 
     return (
-        <div className="flex justify-between items-center py-4 container px-2 mx-auto">
+        <div className="flex justify-between items-center py-4 wrapper">
             <h1>
                 <Link to={"/"}>Eatopia</Link>
             </h1>
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-12">
                 <div>
-                    <ul className="flex gap-4">
+                    <ul className="flex gap-6">
                         <li>
                             <NavLink to={"/"}>Home</NavLink>
                         </li>
