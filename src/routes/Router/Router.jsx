@@ -6,6 +6,8 @@ import Register from "../../pages/Register/Register";
 import AllFoods from "../../pages/AllFoods/AllFoods";
 import Gallery from "../../pages/Gallery/Gallery";
 import AddFood from "../../pages/AddFood/AddFood";
+import MyFood from "../../pages/MyFood/MyFood";
+import MyOrders from "../../pages/MyOrders/MyOrders";
 
 const router = createBrowserRouter([
     {
@@ -14,31 +16,38 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home></Home>
+                element: <Home></Home>,
             },
             {
                 path: "/login",
-                element: <Login></Login>
+                element: <Login></Login>,
             },
             {
                 path: "/register",
-                element: <Register></Register>
+                element: <Register></Register>,
             },
             {
                 path: "/all-foods",
-                element: <AllFoods></AllFoods>
+                element: <AllFoods></AllFoods>,
             },
             {
                 path: "/gallery",
-                element: <Gallery></Gallery>
+                element: <Gallery></Gallery>,
             },
             {
                 path: "/add-food",
-                element: <AddFood></AddFood>
-            }
-        ]
-
-    }
+                element: <AddFood></AddFood>,
+            },
+            {
+                path: "/my-foods",
+                element: <MyFood></MyFood>,
+            },
+            {
+                path: "/my-orders",
+                element: <MyOrders></MyOrders>,
+            },
+        ],
+    },
 ]);
 
-export default router; 
+export default router;
