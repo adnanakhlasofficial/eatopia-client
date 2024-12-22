@@ -3,20 +3,23 @@ import useMode from "../../hooks/useMode";
 import { MdOutlineDarkMode, MdOutlineWbSunny } from "react-icons/md";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { HiBars3 } from "react-icons/hi2";
+import { IoCloseOutline } from "react-icons/io5";
 
 const Navbar = () => {
     const { changeTheme, mode } = useMode();
     const { logoutUser, user } = useContext(AuthContext);
-    const [menu, setMenu] = useState(false);
+    const [menu, showMenu] = useState(false);
+    const [navMenu, showNavMenu] = useState(false);
 
     return (
         <div className="flex justify-between items-center py-4 wrapper relative">
             <h1>
                 <Link to={"/"}>Eatopia</Link>
             </h1>
-            <div className="flex items-center gap-12 lg:flex-row flex-row-reverse">
-                <div className="hidden lg:block">
-                    <ul className="flex gap-6 items-center">
+            <div className="flex items-center gap-8 lg:gap-12 lg:flex-row flex-row-reverse">
+                <div className={`bg-blue-500 lg:bg-inherit absolute transition-all top-0 ${navMenu ? "left-0" : "-left-full"} w-3/4 h-screen z-20 flex px-8 py-12 lg:static lg:w-auto lg:h-auto lg:p-0 lg:block`}>
+                    <ul className="flex flex-col lg:flex-row gap-6 lg:items-center">
                         <li>
                             <NavLink to={"/"}>Home</NavLink>
                         </li>
@@ -27,6 +30,11 @@ const Navbar = () => {
                             <NavLink to={"/gallery"}>Gallery</NavLink>
                         </li>
                     </ul>
+                </div>
+                <div className="block lg:hidden">
+                    <button onClick={() => showNavMenu(!navMenu)} className="flex items-center">
+                        {navMenu ? <IoCloseOutline size={32} /> : <HiBars3 size={32} />}
+                    </button>
                 </div>
                 <div className="flex items-center justify-center gap-4">
                     <button onClick={changeTheme}>
@@ -39,7 +47,7 @@ const Navbar = () => {
                     {user && user?.email ? (
                         <>
                             <button
-                                onClick={() => setMenu(!menu)}
+                                onClick={() => showMenu(!menu)}
                                 className="w-10 h-10"
                             >
                                 <img

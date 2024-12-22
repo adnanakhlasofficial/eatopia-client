@@ -24,19 +24,22 @@ const Carousel = () => {
                 <SwiperSlide>
                     <Slide
                         image={bgImg1}
-                        text={"Experience the best in fine dining at EATOPIA. Enjoy a culinary journey like no other"}
+                        title={"A warm, inviting shot of your restaurant's interior or a beautifully set table."}
+                        desc={"Experience the best in fine dining at EATOPIA. Enjoy a culinary journey like no other."}
                     ></Slide>
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide
                         image={bgImg1}
-                        text={"Indulge in our Chef's Special Creations, crafted with passion and the finest ingredients."}
+                        title={"A close-up of a signature dish prepared by your chef."}
+                        desc={"Indulge in our Chef's Special Creations, crafted with passion and the finest ingredients."}
                     ></Slide>
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide
                         image={bgImg1}
-                        text={"Make your special moments unforgettable. Host your events and celebrations at EATOPIA"}
+                        title={"A vibrant scene of a group of people celebrating at your restaurant."}
+                        desc={"Make your special moments unforgettable. Host your events and celebrations at EATOPIA."}
                     ></Slide>
                 </SwiperSlide>
             </Swiper>
