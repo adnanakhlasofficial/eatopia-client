@@ -10,9 +10,9 @@ const Navbar = () => {
             <h1>
                 <Link to={"/"}>Eatopia</Link>
             </h1>
-            <div className="flex items-center gap-12">
-                <div>
-                    <ul className="flex gap-6">
+            <div className="flex items-center gap-12 lg:flex-row flex-row-reverse">
+                <div className="hidden lg:block">
+                    <ul className="flex gap-6 items-center">
                         <li>
                             <NavLink to={"/"}>Home</NavLink>
                         </li>

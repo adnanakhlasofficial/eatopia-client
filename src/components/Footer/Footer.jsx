@@ -3,7 +3,7 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-        <div className="wrapper grid grid-cols-1 lg:grid-cols-3 py-20">
+        <div className="wrapper grid grid-cols-1 lg:grid-cols-3 py-20 gap-12">
             <div className="space-y-2">
                 <h2 className="footer-heading">Eatopia Industries Ltd.</h2>
                 <p className="text-gray-600 dark:text-gray-400">Providing reliable tech since 1992</p>
