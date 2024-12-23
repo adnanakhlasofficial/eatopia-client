@@ -5,8 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const FoodDetails = () => {
+    const { user } = useContext(AuthContext);
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     console.log(id);
@@ -64,6 +67,24 @@ const FoodDetails = () => {
         }
     };
 
+    const handlePurchase = (e) => {
+        e.preventDefault();
+        const purchaseDate = new Date();
+        const purchase = e.target.quantity.value;
+        const remaining = quantity - purchase
+        // const purchaseFood = {
+        //     name,
+        //     price,
+        //     purchase,
+        //     buyer: {
+        //         name: user?.displayName,
+        //         email: user?.email,
+        //     },
+        //     purchaseDate,
+        // };
+        console.log(remaining);
+    };
+
     return (
         <>
             <Banner title={"Food Details"} img={bgImg1}></Banner>
@@ -92,6 +113,12 @@ const FoodDetails = () => {
                             ({ownerEmail})
                         </span>
                     </div>
+                    <p className="text-gray-600 dark:text-gray-400 mb-2">
+                        Total Purchased:{" "}
+                        <span className="text-neutral-800 dark:text-neutral-200 ml-1 font-medium">
+                            0
+                        </span>
+                    </p>
                     <p className="text-xl font-semibold mb-2">
                         Price:
                         <span className="text-neutral-800 dark:text-neutral-200 ml-1 font-medium">
@@ -128,7 +155,10 @@ const FoodDetails = () => {
                     </p>
 
                     {/* Size and Quantity */}
-                    <form className="flex items-end gap-3">
+                    <form
+                        onSubmit={handlePurchase}
+                        className="flex items-end gap-3"
+                    >
                         <div className="space-y-1 w-[calc(100%-7.8225rem)]">
                             <label className="form-title" htmlFor="quantity">
                                 quantity:

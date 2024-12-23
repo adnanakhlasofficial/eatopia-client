@@ -4,19 +4,17 @@ import FoodCard from "../../components/FoodCard/FoodCard";
 import { useQuery } from "@tanstack/react-query";
 import { ClipLoader } from "react-spinners";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 const AllFoods = () => {
     const axiosSecure = useAxiosSecure();
+    const [foods, setFoods] = useState([]);
 
-    const {
-        isPending,
-        isError,
-        data: foods,
-        error,
-    } = useQuery({
+    const { isPending, isError, data, error } = useQuery({
         queryKey: ["foods"],
         queryFn: async () => {
             const { data } = await axiosSecure.get("/foods");
+            setFoods(data.result);
             return data.result;
         },
     });
@@ -41,11 +39,11 @@ const AllFoods = () => {
 
     console.log(foods);
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const value = e.target.search.value;
-        console.log(value);
-    }
+    const handleSearch = async (e) => {
+        const value = e.target.value;
+        const { data } = await axiosSecure.get(`/food?search=${value}`);
+        setFoods(data);
+    };
 
     return (
         <div>
@@ -55,13 +53,16 @@ const AllFoods = () => {
                 <form onSubmit={handleSearch} className="flex gap-4 w-1/2">
                     <label htmlFor="search" className="relative w-full">
                         <input
-                            className="form-input w-full block !pr-28 !bg-blue-100 shadow-lg"
+                            onChange={handleSearch}
+                            className="form-input w-full block pr-28 !bg-blue-100 shadow-lg"
                             type="search"
                             name="search"
                             id="search"
                             placeholder="Search your favorite food..."
                         />
-                        <button className="btn absolute top-1/2 -translate-y-1/2 right-0 scale-90">Search</button>
+                        {/* <button className="btn absolute top-1/2 -translate-y-1/2 right-0 scale-90">
+                            reset
+                        </button> */}
                     </label>
                 </form>
             </div>
