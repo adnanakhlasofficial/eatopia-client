@@ -1,20 +1,30 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
     const [foodCategory, setFoodCategory] = useState("Select Food Category");
     const [foodOrigin, setFoodOrigin] = useState("Select Food Origin");
+    const axiosSecure = useAxiosSecure();
 
-    const handleAddFood = (e) => {
+    const handleAddFood = async (e) => {
         e.preventDefault();
         const form = new FormData(e.target);
-        const { description, ...formData } = Object.fromEntries(form.entries());
+
+        const { description, quantity, price, ...formData } =
+            Object.fromEntries(form.entries());
+
         const desc = description.split("\n").filter((val) => val !== "");
         formData.ownerName = user?.displayName;
         formData.ownerEmail = user?.email;
+        formData.quantity = parseInt(quantity);
+        formData.price = parseFloat(price);
         formData.desc = desc;
+
+        const { data } = await axiosSecure.post("/foods", formData);
         console.log(formData);
+        console.log(data);
     };
 
     return (
@@ -100,6 +110,7 @@ const AddFood = () => {
                     <input
                         className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         type="number"
+                        step={"any"}
                         name="price"
                         id="price"
                         placeholder="Enter food price"

@@ -1,16 +1,78 @@
 import Banner from "../../components/Banner/Banner";
 import bgImg1 from "../../assets/images/bgimg.jpg";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
 const FoodDetails = () => {
+    const { id } = useParams();
+    const axiosSecure = useAxiosSecure();
+    console.log(id);
+
+    const {
+        data: food,
+        isPending,
+        isError,
+        error,
+    } = useQuery({
+        queryKey: ["food"],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/food/${id}`);
+            return data.result;
+        },
+    });
+
+    if (isPending) {
+        return (
+            <div className="h-[calc(100vh-25rem)] flex justify-center items-center">
+                <ClipLoader
+                    color={"#3B82F6"}
+                    loading={true}
+                    size={250}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+        );
+    }
+
+    if (isError) {
+        return <p>{error.message}</p>;
+    }
+
+    console.log(food);
+
+    const {
+        name,
+        image,
+        origin,
+        price,
+        quantity,
+        ownerEmail,
+        ownerName,
+        desc,
+        category,
+    } = food;
+
+    const handleQuantityChange = (e) => {
+        const val = parseInt(e.target.value);
+        if (val > quantity) {
+            toast.error("Stock limit reached.")
+            e.target.value = quantity;
+        }
+    }
+
     return (
         <>
             <Banner title={"Food Details"} img={bgImg1}></Banner>
 
-            <div className="flex flex-col md:flex-row p-8 bg-gray-200 dark:bg-neutral-800 shadow-md rounded-lg max-w-7xl mx-auto my-12 ">
+            <div className="flex flex-col md:flex-row items-center p-8 bg-gray-200 dark:bg-neutral-800 shadow-md rounded-lg max-w-7xl mx-auto my-12 ">
                 {/* Image Section */}
                 <div className="md:w-1/2 w-full">
                     <img
-                        src= "https://i.ibb.co.com/JpsfcNm/louis-hansel-xx-Ic-EAh-It-J0-unsplash.webp"
+                        src={image || "https://i.ibb.co.com/JpsfcNm/louis-hansel-xx-Ic-EAh-It-J0-unsplash.webp"}
                         alt="Fruit Smoothie"
                         className="rounded-lg w-full"
                     />
@@ -18,46 +80,57 @@ const FoodDetails = () => {
 
                 {/* Product Info Section */}
                 <div className="md:w-1/2 w-full md:ml-8 mt-6 md:mt-0">
-                    <h1 className="text-3xl font-bold mb-2">Fruit Smoothie</h1>
+                    <h1 className="text-3xl font-bold mb-2">{name}</h1>
                     <div className="flex items-center mb-4">
-                        <span className="text-gray-600 dark:text-gray-400">Adnan Akhlas</span>
-                        <span className="ml-2 text-gray-600 dark:text-gray-400">
-                            (adnanakhlas@gmail.com)
+                        <span className="text-gray-600 dark:text-gray-400 font-medium">
+                            {ownerName}
+                        </span>
+                        <span className="ml-2 text-gray-600 dark:text-gray-400 font-medium">
+                            ({ownerEmail})
                         </span>
                     </div>
                     <p className="text-xl font-semibold mb-2">
-                        Price: <span className="text-neutral-800">$3.99</span>
-                    </p>
-                    <p className="mb-2">
-                        Available:{" "}
-                        <span className="text-green-500 font-bold">
-                            In Stock
+                        Price:
+                        <span className="text-neutral-800 dark:text-neutral-200 ml-1 font-medium">
+                            ${price}
                         </span>
                     </p>
-                    <p className="mb-4">
-                        Product Code:{" "}
-                        <span className="text-blue-500">#859234</span>
-                    </p>
-                    <p className="mb-4">
-                        Tags:
-                        <span className="text-blue-500 ml-1">
-                            Food, BBQ, First Food
+                    <p className="mb-2 text-gray-600 dark:text-gray-400">
+                        Available:
+                        <span className="text-neutral-800 dark:text-neutral-200 font-medium ml-1 font-medium">
+                            {quantity} pcs
                         </span>
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt.
+                    <p className="mb-2 text-gray-600 dark:text-gray-400">
+                        Origin: <span className="text-neutral-800 dark:text-neutral-200 font-medium">{origin}</span>
+                    </p>
+                    <p className="mb-6 text-gray-600 dark:text-gray-400">
+                        Category:
+                        <span className="text-neutral-800 dark:text-neutral-200 ml-1 font-medium">{category}</span>
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-5">
+                        <p className="mb-2">Ingredients: </p>
+                        <ul className="flex flex-wrap gap-2 w-4/5 text-neutral-800 dark:text-neutral-200 font-medium">
+                            {desc.map((item, idx) => (
+                                <li key={idx}>
+                                    {idx + 1}. {item}
+                                </li>
+                            ))}
+                        </ul>
                     </p>
 
                     {/* Size and Quantity */}
                     <form className="flex items-end gap-3">
-                        <div className="space-y-2">
+                        <div className="space-y-1 w-[calc(100%-7.8225rem)]">
                             <label className="form-title" htmlFor="quantity">
                                 quantity:
                             </label>
                             <input
-                                className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none "
                                 type="number"
+                                min={1}
+                                max={quantity}
+                                onChange={handleQuantityChange}
                                 name="quantity"
                                 id="quantity"
                                 placeholder="Enter food quantity"

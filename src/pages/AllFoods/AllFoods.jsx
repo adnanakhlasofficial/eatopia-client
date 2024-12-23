@@ -2,10 +2,12 @@ import Banner from "../../components/Banner/Banner";
 import bgImg1 from "../../assets/images/bgimg.jpg";
 import FoodCard from "../../components/FoodCard/FoodCard";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllFoods = () => {
+    const axiosSecure = useAxiosSecure();
+
     const {
         isPending,
         isError,
@@ -14,8 +16,8 @@ const AllFoods = () => {
     } = useQuery({
         queryKey: ["foods"],
         queryFn: async () => {
-            const res = await axios.get("/foods.json");
-            return res.data;
+            const { data } = await axiosSecure.get("/foods");
+            return data.result;
         },
     });
 
@@ -44,8 +46,8 @@ const AllFoods = () => {
             <Banner title={"All Foods"} img={bgImg1}></Banner>
 
             <div className="wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 gap-6">
-                {foods.map((food, idx) => (
-                    <FoodCard key={idx} food={food}></FoodCard>
+                {foods.map((food) => (
+                    <FoodCard key={food._id} food={food}></FoodCard>
                 ))}
             </div>
         </div>

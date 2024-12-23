@@ -19,7 +19,7 @@ const App = () => {
                 </p>
                 <div className="flex gap-4 mt-6">
                     <button>
-                        <img className="h-16" src={android} alt="" />
+                        <img className="h-12" src={android} alt="" />
                     </button>
                     <button>
                         <img className="h-12" src={apple} alt="" />
