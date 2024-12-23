@@ -11,6 +11,7 @@ import MyOrders from "../../pages/MyOrders/MyOrders";
 import SecureRouter from "../SecureRouter/SecureRouter";
 import FoodDetails from "../../pages/FoodDetails/FoodDetails";
 import UpdateFood from "../../pages/UpdateFood/UpdateFood";
+import FoodPurchase from "../../pages/FoodPurchase/FoodPurchase";
 
 const router = createBrowserRouter([
     {
@@ -66,9 +67,13 @@ const router = createBrowserRouter([
                 element: <FoodDetails></FoodDetails>,
             },
             {
+                path: "/food/purchase/:id",
+                element: <FoodPurchase></FoodPurchase>,
+            },
+            {
                 path: "/food/update/:id",
-                element: <UpdateFood></UpdateFood>
-            }
+                element: <UpdateFood></UpdateFood>,
+            },
         ],
     },
 ]);

@@ -11,11 +11,13 @@ const UpdateFood = () => {
     const [foodCategory, setFoodCategory] = useState("Select Food Category");
     const [foodOrigin, setFoodOrigin] = useState("Select Food Origin");
     const axiosSecure = useAxiosSecure();
+    const [food, setFood] = useState({})
 
-    const { data, isPending, isError, error } = useQuery({
-        queryKey: ["food"],
+    const {  isPending, isError, data, error } = useQuery({
+        queryKey: ["updateFood"],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/food/${id}`);
+            setFood(data.result)
             return data.result;
         },
     });
@@ -54,27 +56,26 @@ const UpdateFood = () => {
         formData.price = parseFloat(price);
         formData.desc = desc;
 
-        const { data } = await axiosSecure.post("/foods", formData);
+        const { data } = await axiosSecure.put(`/food/${id}`, formData);
         console.log(formData);
-        console.log(data);
     };
 
-    const {
-        name,
-        image,
-        origin,
-        price,
-        quantity,
-        ownerEmail,
-        ownerName,
-        desc,
-        category,
-    } = data;
+    // const {
+    //     name,
+    //     image,
+    //     origin,
+    //     price,
+    //     quantity,
+    //     ownerEmail,
+    //     ownerName,
+    //     desc,
+    //     category,
+    // } = data;
 
     return (
         <div className="bg-gray-200 dark:bg-neutral-800 max-w-2xl mx-auto p-8 rounded-lg my-12">
             <h2 className="text-3xl text-center font-semibold mb-6">
-                Add New Dish
+                Update Dish
             </h2>
             <form
                 onSubmit={handleUpdateFood}
@@ -85,7 +86,7 @@ const UpdateFood = () => {
                         name:
                     </label>
                     <input
-                        defaultValue={name}
+                        defaultValue={food.name}
                         className="form-input"
                         type="text"
                         name="name"
@@ -99,7 +100,7 @@ const UpdateFood = () => {
                         image:
                     </label>
                     <input
-                        defaultValue={image}
+                        defaultValue={food.image}
                         className="form-input"
                         type="url"
                         name="image"
@@ -113,7 +114,7 @@ const UpdateFood = () => {
                         category:
                     </label>
                     <select
-                        defaultValue={category}
+                        defaultValue={food.category}
                         onChange={(e) => setFoodCategory(e.target.value)}
                         className="form-input"
                         name="category"
@@ -141,7 +142,7 @@ const UpdateFood = () => {
                         quantity:
                     </label>
                     <input
-                        defaultValue={quantity}
+                        defaultValue={food.quantity}
                         className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         type="number"
                         name="quantity"
@@ -155,7 +156,7 @@ const UpdateFood = () => {
                         price:
                     </label>
                     <input
-                        defaultValue={price}
+                        defaultValue={food.price}
                         className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         type="number"
                         step={"any"}
@@ -198,7 +199,7 @@ const UpdateFood = () => {
                         origin:
                     </label>
                     <select
-                        defaultValue={origin}
+                        defaultValue={food.origin}
                         onChange={(e) => setFoodOrigin(e.target.value)}
                         className="form-input"
                         name="origin"

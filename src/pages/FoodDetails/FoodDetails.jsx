@@ -1,15 +1,11 @@
 import Banner from "../../components/Banner/Banner";
 import bgImg1 from "../../assets/images/bgimg.jpg";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ClipLoader } from "react-spinners";
-import toast from "react-hot-toast";
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
 
 const FoodDetails = () => {
-    const { user } = useContext(AuthContext);
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     console.log(id);
@@ -57,33 +53,8 @@ const FoodDetails = () => {
         ownerName,
         desc,
         category,
+        totalPurchase
     } = food;
-
-    const handleQuantityChange = (e) => {
-        const val = parseInt(e.target.value);
-        if (val > quantity) {
-            toast.error("Stock limit reached.");
-            e.target.value = quantity;
-        }
-    };
-
-    const handlePurchase = (e) => {
-        e.preventDefault();
-        const purchaseDate = new Date();
-        const purchase = e.target.quantity.value;
-        const remaining = quantity - purchase
-        // const purchaseFood = {
-        //     name,
-        //     price,
-        //     purchase,
-        //     buyer: {
-        //         name: user?.displayName,
-        //         email: user?.email,
-        //     },
-        //     purchaseDate,
-        // };
-        console.log(remaining);
-    };
 
     return (
         <>
@@ -114,9 +85,9 @@ const FoodDetails = () => {
                         </span>
                     </div>
                     <p className="text-gray-600 dark:text-gray-400 mb-2">
-                        Total Purchased:{" "}
+                        Total Purchased:
                         <span className="text-neutral-800 dark:text-neutral-200 ml-1 font-medium">
-                            0
+                            {totalPurchase || 0}
                         </span>
                     </p>
                     <p className="text-xl font-semibold mb-2">
@@ -154,30 +125,14 @@ const FoodDetails = () => {
                         </ul>
                     </p>
 
-                    {/* Size and Quantity */}
-                    <form
-                        onSubmit={handlePurchase}
-                        className="flex items-end gap-3"
-                    >
-                        <div className="space-y-1 w-[calc(100%-7.8225rem)]">
-                            <label className="form-title" htmlFor="quantity">
-                                quantity:
-                            </label>
-                            <input
-                                className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none "
-                                type="number"
-                                min={1}
-                                max={quantity}
-                                onChange={handleQuantityChange}
-                                name="quantity"
-                                id="quantity"
-                                placeholder="Enter food quantity"
-                            />
-                        </div>
-                        <div>
-                            <button className="btn w-full">Purchase</button>
-                        </div>
-                    </form>
+                    <div>
+                        <Link
+                            to={`/food/purchase/${id}`}
+                            className="btn w-full text-center"
+                        >
+                            Purchase
+                        </Link>
+                    </div>
                 </div>
             </div>
         </>

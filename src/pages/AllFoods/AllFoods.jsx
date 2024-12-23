@@ -40,7 +40,8 @@ const AllFoods = () => {
     console.log(foods);
 
     const handleSearch = async (e) => {
-        const value = e.target.value;
+        e.preventDefault();
+        const value = e.target.search.value;
         const { data } = await axiosSecure.get(`/food?search=${value}`);
         setFoods(data);
     };
@@ -53,17 +54,17 @@ const AllFoods = () => {
                 <form onSubmit={handleSearch} className="flex gap-4 w-1/2">
                     <label htmlFor="search" className="relative w-full">
                         <input
-                            onChange={handleSearch}
-                            className="form-input w-full block pr-28 !bg-blue-100 shadow-lg"
-                            type="search"
+                            className="form-input w-full block !pr-28 !bg-blue-100 shadow-lg"
+                            type="text"
                             name="search"
                             id="search"
                             placeholder="Search your favorite food..."
                         />
-                        {/* <button className="btn absolute top-1/2 -translate-y-1/2 right-0 scale-90">
-                            reset
-                        </button> */}
+                        <button className="btn absolute top-1/2 -translate-y-1/2 right-0 scale-90">
+                            Search
+                        </button>
                     </label>
+                    <input className="btn scale-90 cursor-pointer" type="reset" />
                 </form>
             </div>
 
