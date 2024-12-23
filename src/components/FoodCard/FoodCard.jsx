@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const FoodCard = ({ food }) => {
     const { name, image, price, origin, quantity, category } = food;
 
@@ -31,7 +33,7 @@ const FoodCard = ({ food }) => {
                 </div>
             </div>
             <div>
-                <button className="btn w-full">View Details</button>
+                <Link to={"/food/details/asdf"} className="btn w-full text-center">View Details</Link>
             </div>
         </div>
     );

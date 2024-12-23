@@ -6,6 +6,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { HiBars3 } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
 import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
     const { changeTheme, mode } = useMode();
@@ -18,6 +19,13 @@ const Navbar = () => {
         showMenu(false);
         showNavMenu(false);
     }, [pathname]);
+
+    const handleLogout = () => {
+        logoutUser()
+        .then(() => {
+            toast.success("Signed out. Have a great day!")
+        })
+    };
 
     return (
         <div className="flex justify-between items-center py-4 wrapper relative">
@@ -64,12 +72,12 @@ const Navbar = () => {
                     </button>
                     {loading ? (
                         <ClipLoader
-                        color={"#3B82F6"}
-                        loading={true}
-                        size={24}
-                        aria-label="Loading Spinner"
-                        data-testid="loader"
-                    />
+                            color={"#3B82F6"}
+                            loading={true}
+                            size={24}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     ) : (
                         <>
                             {user && user?.email ? (
@@ -117,9 +125,9 @@ const Navbar = () => {
                                             <li>
                                                 <button
                                                     className="hover:bg-blue-500 transition-colors rounded-md py-1 px-2 w-full text-left"
-                                                    onClick={logoutUser}
+                                                    onClick={handleLogout}
                                                 >
-                                                    Logout
+                                                    Sign Out
                                                 </button>
                                             </li>
                                         </ul>
@@ -127,7 +135,7 @@ const Navbar = () => {
                                 </>
                             ) : (
                                 <Link className="btn" to={"/login"}>
-                                    Login
+                                    Sign In
                                 </Link>
                             )}
                         </>

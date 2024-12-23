@@ -2,9 +2,10 @@ import { Link, Navigate, useLocation } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
-    const { loginUser, user } = useContext(AuthContext);
+    const { loginUser, user, setLoading } = useContext(AuthContext);
     const { state } = useLocation();
 
     if (user) return <Navigate to={state ? state : "/"}></Navigate>;
@@ -19,9 +20,16 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 console.log(userCredential.user);
+                toast.success("Signed in successfully. Welcome!");
             })
             .catch((err) => {
-                console.log(err);
+                const errMessage =
+                    err.message ===
+                        "Firebase: Error (auth/invalid-credential)." &&
+                    "Invalid email or password.";
+                console.log(err.message);
+                setLoading(false);
+                toast.error(errMessage || err.message);
             });
     };
 
