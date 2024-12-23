@@ -59,10 +59,10 @@ const FoodDetails = () => {
     const handleQuantityChange = (e) => {
         const val = parseInt(e.target.value);
         if (val > quantity) {
-            toast.error("Stock limit reached.")
+            toast.error("Stock limit reached.");
             e.target.value = quantity;
         }
-    }
+    };
 
     return (
         <>
@@ -72,7 +72,10 @@ const FoodDetails = () => {
                 {/* Image Section */}
                 <div className="md:w-1/2 w-full">
                     <img
-                        src={image || "https://i.ibb.co.com/JpsfcNm/louis-hansel-xx-Ic-EAh-It-J0-unsplash.webp"}
+                        src={
+                            image ||
+                            "https://i.ibb.co.com/JpsfcNm/louis-hansel-xx-Ic-EAh-It-J0-unsplash.webp"
+                        }
                         alt="Fruit Smoothie"
                         className="rounded-lg w-full"
                     />
@@ -97,16 +100,21 @@ const FoodDetails = () => {
                     </p>
                     <p className="mb-2 text-gray-600 dark:text-gray-400">
                         Available:
-                        <span className="text-neutral-800 dark:text-neutral-200 font-medium ml-1 font-medium">
+                        <span className="text-neutral-800 dark:text-neutral-200 font-medium ml-1">
                             {quantity} pcs
                         </span>
                     </p>
                     <p className="mb-2 text-gray-600 dark:text-gray-400">
-                        Origin: <span className="text-neutral-800 dark:text-neutral-200 font-medium">{origin}</span>
+                        Origin:{" "}
+                        <span className="text-neutral-800 dark:text-neutral-200 font-medium">
+                            {origin}
+                        </span>
                     </p>
                     <p className="mb-6 text-gray-600 dark:text-gray-400">
                         Category:
-                        <span className="text-neutral-800 dark:text-neutral-200 ml-1 font-medium">{category}</span>
+                        <span className="text-neutral-800 dark:text-neutral-200 ml-1 font-medium">
+                            {category}
+                        </span>
                     </p>
                     <p className="text-gray-600 dark:text-gray-400 mb-5">
                         <p className="mb-2">Ingredients: </p>

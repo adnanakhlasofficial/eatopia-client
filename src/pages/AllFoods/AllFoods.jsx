@@ -41,9 +41,30 @@ const AllFoods = () => {
 
     console.log(foods);
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const value = e.target.search.value;
+        console.log(value);
+    }
+
     return (
         <div>
             <Banner title={"All Foods"} img={bgImg1}></Banner>
+
+            <div className="wrapper my-12 grid place-items-center">
+                <form onSubmit={handleSearch} className="flex gap-4 w-1/2">
+                    <label htmlFor="search" className="relative w-full">
+                        <input
+                            className="form-input w-full block !pr-28 !bg-blue-100 shadow-lg"
+                            type="search"
+                            name="search"
+                            id="search"
+                            placeholder="Search your favorite food..."
+                        />
+                        <button className="btn absolute top-1/2 -translate-y-1/2 right-0 scale-90">Search</button>
+                    </label>
+                </form>
+            </div>
 
             <div className="wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 gap-6">
                 {foods.map((food) => (
