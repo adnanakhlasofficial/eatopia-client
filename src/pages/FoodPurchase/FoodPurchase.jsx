@@ -16,9 +16,7 @@ const FoodPurchase = () => {
     const [totalPurchase, setTotalPurchase] = useState(0);
     const [totaAvailable, setTotalAvailable] = useState(0);
 
-    useEffect(() => {
-        
-    }, [])
+    useEffect(() => {}, []);
 
     const { data, isPending, isError, error } = useQuery({
         queryKey: ["food"],
@@ -83,6 +81,10 @@ const FoodPurchase = () => {
             name: food.name,
             price: food.price,
             purchaseQuantity,
+            owner: {
+                name: food.ownerName,
+                email: food.ownerEmail,
+            },
             buyer: {
                 name: user?.displayName,
                 email: user?.email,
@@ -92,7 +94,7 @@ const FoodPurchase = () => {
 
         console.log(purchasedFood);
 
-        const res = await axiosSecure.post('/purchase-food', purchasedFood)
+        const res = await axiosSecure.post("/purchase-food", purchasedFood);
         console.log(res);
 
         const response = await axiosSecure.patch(`/food/${id}`, {
@@ -167,11 +169,12 @@ const FoodPurchase = () => {
                     <div className="text-gray-600 dark:text-gray-400 mb-5">
                         <span className="mb-2">Ingredients: </span>
                         <ul className="flex flex-wrap gap-2 w-4/5 text-neutral-800 dark:text-neutral-200 font-medium">
-                            {food?.desc && food?.desc.map((item, idx) => (
-                                <li key={idx}>
-                                    {idx + 1}. {item}
-                                </li>
-                            ))}
+                            {food?.desc &&
+                                food?.desc.map((item, idx) => (
+                                    <li key={idx}>
+                                        {idx + 1}. {item}
+                                    </li>
+                                ))}
                         </ul>
                     </div>
 
