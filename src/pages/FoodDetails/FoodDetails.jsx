@@ -114,7 +114,7 @@ const FoodDetails = () => {
                             {category}
                         </span>
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400 mb-5">
+                    <div className="text-gray-600 dark:text-gray-400 mb-5">
                         <p className="mb-2">Ingredients: </p>
                         <ul className="flex flex-wrap gap-2 w-4/5 text-neutral-800 dark:text-neutral-200 font-medium">
                             {desc.map((item, idx) => (
@@ -123,7 +123,7 @@ const FoodDetails = () => {
                                 </li>
                             ))}
                         </ul>
-                    </p>
+                    </div>
 
                     <div>
                         <Link
