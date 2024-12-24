@@ -12,7 +12,6 @@ const FoodCard = ({ food }) => {
         totalPurchase,
     } = food;
     const { pathname } = useLocation();
-    console.log(pathname);
 
     return (
         <div className="max-w-sm rounded-xl bg-blue-50 dark:bg-neutral-800 shadow-lg p-4">
