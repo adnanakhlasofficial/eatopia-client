@@ -97,6 +97,7 @@ const AddFood = () => {
                     <input
                         className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         type="number"
+                        onWheel={(e) => e.target.blur()}
                         name="quantity"
                         id="quantity"
                         placeholder="Enter food quantity"
@@ -110,6 +111,7 @@ const AddFood = () => {
                     <input
                         className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         type="number"
+                        onWheel={(e) => e.target.blur()}
                         step={"any"}
                         name="price"
                         id="price"

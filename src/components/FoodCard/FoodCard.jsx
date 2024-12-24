@@ -1,7 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 
 const FoodCard = ({ food }) => {
-    const { _id, name, image, price, origin, quantity, category } = food;
+    const {
+        _id,
+        name,
+        image,
+        price,
+        origin,
+        quantity,
+        category,
+        totalPurchase,
+    } = food;
     const { pathname } = useLocation();
     console.log(pathname);
 
@@ -25,6 +34,9 @@ const FoodCard = ({ food }) => {
                     </p>
                     <p className="text-gray-600 dark:text-gray-400">
                         Quantity: {quantity}
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-400">
+                        Total Purchased: {totalPurchase || 0}
                     </p>
                     <p className="text-gray-600 dark:text-gray-400">
                         Price: ${price.toFixed(2)}

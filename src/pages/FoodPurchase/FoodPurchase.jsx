@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const FoodPurchase = () => {
@@ -15,6 +15,10 @@ const FoodPurchase = () => {
     const [food, setFood] = useState({});
     const [totalPurchase, setTotalPurchase] = useState(0);
     const [totaAvailable, setTotalAvailable] = useState(0);
+
+    useEffect(() => {
+        
+    }, [])
 
     const { data, isPending, isError, error } = useQuery({
         queryKey: ["food"],
@@ -183,6 +187,7 @@ const FoodPurchase = () => {
                             <input
                                 className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none "
                                 type="number"
+                                onWheel={(e) => e.target.blur()}
                                 min={1}
                                 max={totaAvailable}
                                 onChange={handleQuantityChange}
