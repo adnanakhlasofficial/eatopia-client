@@ -1,11 +1,14 @@
 import { Link, Navigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Register = () => {
-    const { createUser, updateUser, user } = useContext(AuthContext);
+    const { createUser, updateUser, user, setLoading } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
 
     if (user) return <Navigate to={"/"}></Navigate>;
 
@@ -20,7 +23,7 @@ const Register = () => {
         const displayName = form.name.value;
         const photoURL = form.photo.value;
 
-        if (!passRegex.test(password)) alert("Enter password correctly");
+        if (!passRegex.test(password)) toast.error('Password must include uppercase, lowercase, and at least 6 digits.');
 
         createUser(email, password)
             .then((userCredential) => {
@@ -28,12 +31,14 @@ const Register = () => {
                     .then(() => {
                         console.log("profile updated");
                         console.log(userCredential.user);
+                        toast.success(`Registration successful! Welcome ${displayName}.`)
                     })
                     .catch((err) => {
                         console.log(err);
                     });
             })
             .catch((err) => {
+                setLoading(false)
                 console.log(err);
             });
     };
@@ -94,7 +99,7 @@ const Register = () => {
                             placeholder="Enter your photo url"
                         />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 relative">
                         <label
                             className="capitalize font-medium"
                             htmlFor="password"
@@ -103,11 +108,12 @@ const Register = () => {
                         </label>
                         <input
                             className="px-4 py-2 w-full bg-gray-50 rounded-md text-gray-700 font-medium"
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             name="password"
                             id="password"
                             placeholder="Enter your password"
                         />
+                        <span onClick={() => setShowPassword(!showPassword)} className="absolute top-1/2 -translate-y-1 right-4 cursor-pointer">{showPassword ? <FaEyeSlash size={24} /> : <FaEye size={24} />}</span>
                     </div>
                     <div>
                         <button className="btn w-full mt-8">Sign Up</button>
