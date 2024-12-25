@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 const App = () => {
     return (
-        <div className="wrapper my-20 flex items-center gap-16 justify-around">
+        <div className="wrapper my-20 flex items-center gap-16 justify-around flex-col lg:flex-row">
             <div className="max-w-lg">
                 <h2 className="text-3xl font-bold !leading-[3rem] text-slate-950 dark:text-slate-100">
                     Simple Way to Order Your Food Faster
@@ -26,7 +26,7 @@ const App = () => {
                     </button>
                 </div>
             </div>
-            <div className="w-1/2 grid place-items-center">
+            <div className="lg:w-1/2 grid place-items-center">
                 <motion.img
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}

@@ -1,14 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import FoodCard from "../../components/FoodCard/FoodCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ClipLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useLocation } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const MyFood = () => {
     const { user } = useContext(AuthContext);
-    const {pathname} = useLocation();
     const axiosSecure = useAxiosSecure();
 
     const { isPending, isError, data, error } = useQuery({
@@ -42,13 +41,19 @@ const MyFood = () => {
     console.log(data);
 
     return (
-        <div>
-            <div className="wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 gap-6">
-                {data.map((food) => (
-                    <FoodCard key={food._id} food={food}></FoodCard>
-                ))}
+        <HelmetProvider>
+            <Helmet>
+                <title>MY FOOD | EATOPIA</title>
+                <link rel="canonical" href="https://www.tacobell.com/" />
+            </Helmet>
+            <div>
+                <div className="wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 gap-6">
+                    {data.map((food) => (
+                        <FoodCard key={food._id} food={food}></FoodCard>
+                    ))}
+                </div>
             </div>
-        </div>
+        </HelmetProvider>
     );
 };
 

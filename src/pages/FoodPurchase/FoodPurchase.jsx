@@ -7,6 +7,7 @@ import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const FoodPurchase = () => {
     const { user } = useContext(AuthContext);
@@ -89,12 +90,16 @@ const FoodPurchase = () => {
 
         setTotalAvailable(remaining);
         setTotalPurchase(purchaseQuantity);
-        
+
         if (res.data.result.insertedId) toast.success("Purchase Confirmed!");
     };
 
     return (
-        <>
+        <HelmetProvider>
+            <Helmet>
+                <title>FOOD PURCHASE | EATOPIA</title>
+                <link rel="canonical" href="https://www.tacobell.com/" />
+            </Helmet>
             <Banner title={"Food Purchase"} img={bgImg1}></Banner>
 
             <div className="bg-gray-200 dark:bg-neutral-800 max-w-2xl mx-auto p-8 rounded-lg my-12">
@@ -188,7 +193,7 @@ const FoodPurchase = () => {
                     </div>
                 </form>
             </div>
-        </>
+        </HelmetProvider>
     );
 };
 

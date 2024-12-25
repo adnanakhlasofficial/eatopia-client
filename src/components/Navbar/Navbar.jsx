@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import useMode from "../../hooks/useMode";
 import { MdOutlineDarkMode, MdOutlineWbSunny } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
@@ -7,6 +7,8 @@ import { HiBars3 } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
+import darkLogo from '../../assets/logo/dark.png';
+import lightLogo from '../../assets/logo/light.png';
 
 const Navbar = () => {
     const { changeTheme, mode } = useMode();
@@ -21,16 +23,15 @@ const Navbar = () => {
     }, [pathname]);
 
     const handleLogout = () => {
-        logoutUser()
-        .then(() => {
-            toast.success("Signed out. Have a great day!")
-        })
+        logoutUser().then(() => {
+            toast.success("Signed out. Have a great day!");
+        });
     };
 
     return (
         <div className="flex justify-between items-center py-4 wrapper relative">
             <h1>
-                <Link to={"/"}>Eatopia</Link>
+                <NavLink className={'flex items-center gap-3 font-bold text-2xl'} to={"/"}><img className="w-10 -rotate-12" src={mode === 'light' ? darkLogo : lightLogo } alt="logo" />EATOPIA</NavLink>
             </h1>
             <div className="flex items-center gap-8 lg:gap-12 lg:flex-row flex-row-reverse">
                 <div
@@ -40,13 +41,46 @@ const Navbar = () => {
                 >
                     <ul className="flex flex-col lg:flex-row gap-6 lg:items-center">
                         <li>
-                            <NavLink to={"/"}>Home</NavLink>
+                            <NavLink
+                                className={({ isActive }) =>
+                                    `after:content[''] after:${
+                                        isActive
+                                            ? "w-full"
+                                            : "w-0"
+                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block hover:after:w-full after:mx-auto after:transition-all font-medium`
+                                }
+                                to={"/"}
+                            >
+                                Home
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/all-foods"}>All Foods</NavLink>
+                            <NavLink
+                                className={({ isActive }) =>
+                                    `after:content[''] after:${
+                                        isActive
+                                            ? "w-full"
+                                            : "w-0"
+                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block hover:after:w-full after:mx-auto after:transition-all font-medium`
+                                }
+                                to={"/all-foods"}
+                            >
+                                All Foods
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/gallery"}>Gallery</NavLink>
+                            <NavLink
+                                className={({ isActive }) =>
+                                    `after:content[''] after:${
+                                        isActive
+                                            ? "w-full"
+                                            : "w-0"
+                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block hover:after:w-full after:mx-auto after:transition-all font-medium`
+                                }
+                                to={"/gallery"}
+                            >
+                                Gallery
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
@@ -99,32 +133,32 @@ const Navbar = () => {
                                     >
                                         <ul className="space-y-3">
                                             <li>
-                                                <Link
-                                                    className="hover:bg-blue-500 transition-colors rounded-md py-1 px-2 w-full block"
+                                                <NavLink
+                                                    className={({isActive}) =>`hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${isActive ? 'bg-blue-500' : ''} w-full block`}
                                                     to={"/my-foods"}
                                                 >
                                                     My Foods
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
-                                                    className="hover:bg-blue-500 transition-colors rounded-md py-1 px-2 w-full block"
+                                                <NavLink
+                                                    className={({isActive}) =>`hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${isActive ? 'bg-blue-500' : ''} w-full block`}
                                                     to={"/add-food"}
                                                 >
                                                     Add Food
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
-                                                    className="hover:bg-blue-500 transition-colors rounded-md py-1 px-2 w-full block"
+                                                <NavLink
+                                                    className={({isActive}) =>`hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${isActive ? 'bg-blue-500' : ''} w-full block`}
                                                     to={"/my-orders"}
                                                 >
                                                     My Orders
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
                                                 <button
-                                                    className="hover:bg-blue-500 transition-colors rounded-md py-1 px-2 w-full text-left"
+                                                    className="hover:bg-blue-500 transition-colors rounded-md py-1 px-2 w-full text-left font-medium"
                                                     onClick={handleLogout}
                                                 >
                                                     Sign Out
@@ -134,9 +168,9 @@ const Navbar = () => {
                                     </div>
                                 </>
                             ) : (
-                                <Link className="btn" to={"/login"}>
+                                <NavLink className="btn" to={"/login"}>
                                     Sign In
-                                </Link>
+                                </NavLink>
                             )}
                         </>
                     )}

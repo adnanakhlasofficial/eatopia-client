@@ -30,6 +30,7 @@ const images = [
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Gallery = () => {
     const { user } = useContext(AuthContext);
@@ -38,32 +39,38 @@ const Gallery = () => {
         console.log("lightGallery has been initialized");
     };
     return (
-        <div>
-            <Banner title={"Eatopia Gallery"} img={bgImg1}></Banner>
+        <HelmetProvider>
+            <Helmet>
+                <title>GALLERY | EATOPIA</title>
+                <link rel="canonical" href="https://www.tacobell.com/" />
+            </Helmet>
+            <div>
+                <Banner title={"Eatopia Gallery"} img={bgImg1}></Banner>
 
-            <div className="App wrapper my-12">
-                <LightGallery
-                    onInit={onInit}
-                    speed={500}
-                    plugins={[lgThumbnail, lgZoom]}
-                >
-                    {images.map((img, idx) => (
-                        <Link to={img.src} key={idx} className="block">
-                            <div className="relative overflow-hidden group my-4">
-                                <span className="absolute top-full left-0 bg-black/75 w-full h-full rounded-xl grid place-items-center text-white group-hover:top-0 transition-all text-center">
-                                    Hi, <br /> {user?.displayName}
-                                </span>
-                                <img
-                                    className="max-w-full h-full w-full rounded-2xl block"
-                                    src={img.src}
-                                    alt=""
-                                />
-                            </div>
-                        </Link>
-                    ))}
-                </LightGallery>
+                <div className="App wrapper my-12">
+                    <LightGallery
+                        onInit={onInit}
+                        speed={500}
+                        plugins={[lgThumbnail, lgZoom]}
+                    >
+                        {images.map((img, idx) => (
+                            <Link to={img.src} key={idx} className="block">
+                                <div className="relative overflow-hidden group my-4">
+                                    <span className="absolute top-full left-0 bg-black/75 w-full h-full rounded-xl grid place-items-center text-white group-hover:top-0 transition-all text-center">
+                                        Hi, <br /> {user?.displayName}
+                                    </span>
+                                    <img
+                                        className="max-w-full h-full w-full rounded-2xl block"
+                                        src={img.src}
+                                        alt=""
+                                    />
+                                </div>
+                            </Link>
+                        ))}
+                    </LightGallery>
+                </div>
             </div>
-        </div>
+        </HelmetProvider>
     );
 };
 

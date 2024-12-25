@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ClipLoader } from "react-spinners";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const FoodDetails = () => {
     const { id } = useParams();
@@ -53,11 +54,15 @@ const FoodDetails = () => {
         ownerName,
         desc,
         category,
-        totalPurchase
+        totalPurchase,
     } = food;
 
     return (
-        <>
+        <HelmetProvider>
+            <Helmet>
+                <title>FOOD DETAILS | EATOPIA</title>
+                <link rel="canonical" href="https://www.tacobell.com/" />
+            </Helmet>
             <Banner title={"Food Details"} img={bgImg1}></Banner>
 
             <div className="flex flex-col md:flex-row items-center p-8 bg-gray-200 dark:bg-neutral-800 shadow-md rounded-lg max-w-7xl mx-auto my-12 ">
@@ -135,7 +140,7 @@ const FoodDetails = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </HelmetProvider>
     );
 };
 
