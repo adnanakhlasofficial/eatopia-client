@@ -1,8 +1,6 @@
 import Banner from "../../components/Banner/Banner";
 import bgImg1 from "../../assets/images/bgimg.jpg";
 import FoodCard from "../../components/FoodCard/FoodCard";
-import { useQuery } from "@tanstack/react-query";
-import { ClipLoader } from "react-spinners";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -26,13 +24,21 @@ const AllFoods = () => {
             .then((res) => {
                 setFoods(res.data.result);
             });
-    }, [axiosSecure, currentPage]);
+    }, [currentPage]);
 
     const handleSearch = async (e) => {
         e.preventDefault();
         const value = e.target.search.value;
         const { data } = await axiosSecure.get(`/food?search=${value}`);
         setFoods(data);
+    };
+
+    const handleReset = () => {
+        axiosSecure
+            .get(`/foods?page=${currentPage}&size=${foodsPerPage}`)
+            .then((res) => {
+                setFoods(res.data.result);
+            });
     };
 
     return (
@@ -62,6 +68,7 @@ const AllFoods = () => {
                             </button>
                         </label>
                         <input
+                            onClick={handleReset}
                             className="btn w-max mx-auto scale-90 cursor-pointer"
                             type="reset"
                         />
@@ -75,17 +82,20 @@ const AllFoods = () => {
                 </div>
 
                 <div className="flex gap-2 w-max mx-auto my-8">
-                    {count > 9 && pages.map((page, idx) => (
-                        <button
-                            onClick={() => setCurrentPage(page)}
-                            className={`btn w-8 flex justify-center items-center ${
-                                currentPage === page ? "!bg-red-500" : undefined
-                            }`}
-                            key={idx}
-                        >
-                            {page}
-                        </button>
-                    ))}
+                    {count > 9 &&
+                        pages.map((page, idx) => (
+                            <button
+                                onClick={() => setCurrentPage(page)}
+                                className={`btn w-8 flex justify-center items-center ${
+                                    currentPage === page
+                                        ? "!bg-red-500"
+                                        : undefined
+                                }`}
+                                key={idx}
+                            >
+                                {page}
+                            </button>
+                        ))}
                 </div>
             </div>
         </HelmetProvider>

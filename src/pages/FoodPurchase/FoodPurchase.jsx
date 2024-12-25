@@ -1,6 +1,6 @@
 import Banner from "../../components/Banner/Banner";
 import bgImg1 from "../../assets/images/bgimg.jpg";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ClipLoader } from "react-spinners";
@@ -16,6 +16,7 @@ const FoodPurchase = () => {
     const [food, setFood] = useState({});
     const [totalPurchase, setTotalPurchase] = useState(0);
     const [totaAvailable, setTotalAvailable] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {}, []);
 
@@ -91,7 +92,10 @@ const FoodPurchase = () => {
         setTotalAvailable(remaining);
         setTotalPurchase(purchaseQuantity);
 
-        if (res.data.result.insertedId) toast.success("Purchase Confirmed!");
+        if (res.data.result.insertedId) {
+            toast.success("Purchase Confirmed!");
+            navigate("/my-orders")
+        }
     };
 
     return (
