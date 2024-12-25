@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
@@ -24,7 +25,8 @@ const AddFood = () => {
 
         const { data } = await axiosSecure.post("/foods", formData);
         console.log(formData);
-        console.log(data);
+        
+        if (data.result.insertedId) toast.success("Food Added!");
     };
 
     return (

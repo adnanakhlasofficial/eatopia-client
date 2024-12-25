@@ -2,22 +2,24 @@ import Banner from "../../components/Banner/Banner";
 import bgImg1 from "../../assets/images/bgimg.jpg";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { ClipLoader } from "react-spinners";
 import { format } from "date-fns";
 import { FaTrash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
+    const [purchasedFood, setPurchasedFood] = useState([]);
     const { isPending, isError, error, data } = useQuery({
         queryKey: ["purchasedFood"],
         queryFn: async () => {
             const { data } = await axiosSecure.get(
                 `/orders?email=${user.email}`
             );
-            console.log(data);
+            setPurchasedFood(data);
             return data;
         },
     });
@@ -40,9 +42,12 @@ const MyOrders = () => {
         return <p>{error.message}</p>;
     }
 
-    console.log(data);
-    console.log(new Date());
-    console.log(format(new Date(), "PP"));
+    const handleDelete = async (id) => {
+        const { data } = await axiosSecure.delete(`/purchase-delete/${id}`);
+        if (data.deletedCount) toast.success("Food Removed!");
+        const remaining = purchasedFood.filter((item) => item._id !== id);
+        setPurchasedFood(remaining);
+    };
 
     return (
         <div>
@@ -55,26 +60,43 @@ const MyOrders = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>
-                                Purchased Date
-                            </th>
-                            <th>
-                                Food Owner
-                            </th>
+                            <th>Purchased Date</th>
+                            <th>Food Owner</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item,idx) => (
-                            <tr className="border-y border-gray-400 dark:border-slate-600 text-gray-600 dark:text-gray-200 *:px-4 *:py-2" key={item._id}>
-                                <td className="text-right">{idx + 1}</td>
-                                <td>{item.name}</td>
-                                <td>${item.price}</td>
-                                <td>{format(item.purchaseDate, "PP")} ({format(item.purchaseDate, "p")})</td>
-                                <td>{item.owner.name}</td>
-                                <td><button className="grid place-items-center"><FaTrash className="text-red-500 dark:text-red-400" /></button></td>
+                        {purchasedFood.length < 1 ? (
+                            <tr>
+                                <td className="text-center text-2xl font-semibold px-4 py-2" colSpan={6}>No food has been ordered yet.</td>
                             </tr>
-                        ))}
+                        ) : (
+                            purchasedFood.map((item, idx) => (
+                                <tr
+                                    className="border-y border-gray-400 dark:border-slate-600 text-gray-600 dark:text-gray-200 *:px-4 *:py-2"
+                                    key={item._id}
+                                >
+                                    <td className="text-right">{idx + 1}</td>
+                                    <td>{item.name}</td>
+                                    <td>${item.price}</td>
+                                    <td>
+                                        {format(item.purchaseDate, "PP")} (
+                                        {format(item.purchaseDate, "p")})
+                                    </td>
+                                    <td>{item.owner.name}</td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                handleDelete(item._id)
+                                            }
+                                            className="grid place-items-center"
+                                        >
+                                            <FaTrash className="text-red-500 dark:text-red-400" />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>
