@@ -25,3 +25,12 @@
 body {
     @apply font-montserrat dark:bg-zinc-950 dark:text-slate-100;
 }
+
+.lg-react-element {
+    column-count: 3;
+    
+}
+
+.lg-react-element:last-child {
+    align-content: left;
+}
