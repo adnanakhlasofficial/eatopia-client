@@ -47,21 +47,6 @@ const FoodPurchase = () => {
         return <p>{error.message}</p>;
     }
 
-    // console.log(food);
-
-    // const {
-    //     name,
-    //     image,
-    //     origin,
-    //     price,
-    //     quantity,
-    //     ownerEmail,
-    //     ownerName,
-    //     desc,
-    //     category,
-    //     totalPurchase,
-    // } = food;
-
     const handleQuantityChange = (e) => {
         const val = parseInt(e.target.value);
         if (val > totaAvailable) {
@@ -75,12 +60,13 @@ const FoodPurchase = () => {
         const purchaseDate = new Date();
         const purchaseQuantity =
             parseInt(e.target.quantity.value) + totalPurchase;
+        const currentPurchase = parseInt(e.target.quantity.value);
         const remaining = totaAvailable - parseInt(e.target.quantity.value);
         const purchasedFood = {
             id,
             name: food.name,
             price: food.price,
-            purchaseQuantity,
+            currentPurchase,
             owner: {
                 name: food.ownerName,
                 email: food.ownerEmail,
@@ -94,18 +80,17 @@ const FoodPurchase = () => {
 
         console.log(purchasedFood);
 
-        // const res = await axiosSecure.post("/purchase-food", purchasedFood);
-        // console.log(res);
+        const res = await axiosSecure.post("/purchase-food", purchasedFood);
 
-        // const response = await axiosSecure.patch(`/food/${id}`, {
-        //     remaining,
-        //     purchaseQuantity,
-        // });
+        const response = await axiosSecure.patch(`/food/${id}`, {
+            remaining,
+            purchaseQuantity,
+        });
 
         setTotalAvailable(remaining);
         setTotalPurchase(purchaseQuantity);
-
-        console.log(remaining, purchaseQuantity);
+        
+        if (res.data.result.insertedId) toast.success("Purchase Confirmed!");
     };
 
     return (
@@ -116,7 +101,10 @@ const FoodPurchase = () => {
                 <h2 className="text-3xl text-center font-semibold mb-6">
                     Food Purchase
                 </h2>
-                <form onSubmit={handlePurchase} className="grid grid-cols-1 gap-4 ">
+                <form
+                    onSubmit={handlePurchase}
+                    className="grid grid-cols-1 gap-4 "
+                >
                     <div className="space-y-2">
                         <label className="form-title" htmlFor="name">
                             name:
