@@ -50,13 +50,14 @@ const AuthProvider = ({ children }) => {
             if (currentUser?.email) {
                 const user = { email: currentUser.email };
                 const { data } = await axiosSecure.post("/login", user);
+                setLoading(false);
                 console.log(data);
             } else {
                 const { data } = await axiosSecure.post("/logout", {});
+                setLoading(false);
                 console.log(data);
             }
 
-            setLoading(false);
         });
 
         return () => unsubscribe();

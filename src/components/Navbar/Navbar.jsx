@@ -45,9 +45,9 @@ const Navbar = () => {
                                 className={({ isActive }) =>
                                     `after:content[''] after:${
                                         isActive
-                                            ? "w-full"
-                                            : "w-0"
-                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block hover:after:w-full after:mx-auto after:transition-all font-medium`
+                                            ? "after:w-full"
+                                            : "after:w-0"
+                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block after:w-0 hover:after:w-full after:mx-auto after:transition-all font-medium`
                                 }
                                 to={"/"}
                             >
@@ -59,9 +59,9 @@ const Navbar = () => {
                                 className={({ isActive }) =>
                                     `after:content[''] after:${
                                         isActive
-                                            ? "w-full"
-                                            : "w-0"
-                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block hover:after:w-full after:mx-auto after:transition-all font-medium`
+                                            ? "after:w-full"
+                                            : "after:w-0"
+                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block after:w-0 hover:after:w-full after:mx-auto after:transition-all font-medium`
                                 }
                                 to={"/all-foods"}
                             >
@@ -73,9 +73,9 @@ const Navbar = () => {
                                 className={({ isActive }) =>
                                     `after:content[''] after:${
                                         isActive
-                                            ? "w-full"
-                                            : "w-0"
-                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block hover:after:w-full after:mx-auto after:transition-all font-medium`
+                                            ? "after:w-full"
+                                            : "after:w-0"
+                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block after:w-0 hover:after:w-full after:mx-auto after:transition-all font-medium`
                                 }
                                 to={"/gallery"}
                             >

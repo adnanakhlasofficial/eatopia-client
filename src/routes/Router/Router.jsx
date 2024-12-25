@@ -68,11 +68,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/food/purchase/:id",
-                element: <FoodPurchase></FoodPurchase>,
+                element: <SecureRouter><FoodPurchase></FoodPurchase></SecureRouter>,
             },
             {
                 path: "/food/update/:id",
-                element: <UpdateFood></UpdateFood>,
+                element: <SecureRouter><UpdateFood></UpdateFood></SecureRouter>,
             },
         ],
     },

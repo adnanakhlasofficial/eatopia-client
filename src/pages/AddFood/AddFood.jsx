@@ -3,12 +3,14 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
     const [foodCategory, setFoodCategory] = useState("Select Food Category");
     const [foodOrigin, setFoodOrigin] = useState("Select Food Origin");
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const handleAddFood = async (e) => {
         e.preventDefault();
@@ -25,9 +27,12 @@ const AddFood = () => {
         formData.desc = desc;
 
         const { data } = await axiosSecure.post("/foods", formData);
-        console.log(formData);
+        console.log(data);
 
-        if (data.result.insertedId) toast.success("Food Added!");
+        if (data.insertedId) {
+            toast.success("Food Added!");
+            navigate("/my-foods");
+        }
     };
 
     return (
