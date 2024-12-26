@@ -80,8 +80,6 @@ const FoodPurchase = () => {
             purchaseDate,
         };
 
-        console.log(purchasedFood);
-
         const res = await axiosSecure.post("/purchase-food", purchasedFood);
 
         const response = await axiosSecure.patch(`/food/${id}`, {
@@ -94,7 +92,7 @@ const FoodPurchase = () => {
 
         if (res.data.result.insertedId) {
             toast.success("Purchase Confirmed!");
-            navigate("/my-orders")
+            navigate("/my-orders");
         }
     };
 

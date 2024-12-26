@@ -10,7 +10,6 @@ const TopFoods = () => {
         queryKey: ["topFoods"],
         queryFn: async () => {
             const { data } = await axiosSecure.get("/limit-food");
-            console.log(data);
             return data;
         },
     });
@@ -35,14 +34,21 @@ const TopFoods = () => {
 
     return (
         <div className="my-20 wrapper">
-            <h2 className="text-3xl font-bold !leading-[3rem] text-slate-950 dark:text-slate-100 text-center">Our Top Food Picks for You</h2>
+            <h2 className="text-3xl font-bold !leading-[3rem] text-slate-950 dark:text-slate-100 text-center">
+                Our Top Food Picks for You
+            </h2>
             <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-6">
                 {data.map((food) => (
                     <FoodCard key={food._id} food={food}></FoodCard>
                 ))}
             </div>
             <div>
-                <Link className="btn text-center w-max mx-auto" to={"/all-foods"}>View All</Link>
+                <Link
+                    className="btn text-center w-max mx-auto"
+                    to={"/all-foods"}
+                >
+                    View All
+                </Link>
             </div>
         </div>
     );

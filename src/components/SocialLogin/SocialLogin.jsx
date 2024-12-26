@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import PropTypes from "prop-types";
 
 const SocialLogin = ({ text }) => {
     const { googleLogin } = useContext(AuthContext);
@@ -8,11 +9,10 @@ const SocialLogin = ({ text }) => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then((userCredential) => {
-                console.log(userCredential);
                 toast.success(`${text} successful!`);
             })
             .catch((err) => {
-                console.log(err);
+                toast.error(err.message);
             });
     };
 
@@ -26,6 +26,10 @@ const SocialLogin = ({ text }) => {
             </button>
         </div>
     );
+};
+
+SocialLogin.propTypes = {
+    text: PropTypes.string,
 };
 
 export default SocialLogin;

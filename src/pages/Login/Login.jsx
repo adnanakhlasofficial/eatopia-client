@@ -20,7 +20,6 @@ const Login = () => {
 
         loginUser(email, password)
             .then((userCredential) => {
-                console.log(userCredential.user);
                 toast.success("Signed in successfully. Welcome!");
             })
             .catch((err) => {
@@ -28,7 +27,6 @@ const Login = () => {
                     err.message ===
                         "Firebase: Error (auth/invalid-credential)." &&
                     "Invalid email or password.";
-                console.log(err.message);
                 setLoading(false);
                 toast.error(errMessage || err.message);
             });

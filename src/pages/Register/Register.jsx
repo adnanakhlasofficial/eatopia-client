@@ -7,7 +7,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const Register = () => {
-    const { createUser, updateUser, user, setLoading } = useContext(AuthContext);
+    const { createUser, updateUser, user, setLoading } =
+        useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
 
     if (user) return <Navigate to={"/"}></Navigate>;
@@ -23,23 +24,26 @@ const Register = () => {
         const displayName = form.name.value;
         const photoURL = form.photo.value;
 
-        if (!passRegex.test(password)) toast.error('Password must include uppercase, lowercase, and at least 6 digits.');
+        if (!passRegex.test(password))
+            toast.error(
+                "Password must include uppercase, lowercase, and at least 6 digits."
+            );
 
         createUser(email, password)
             .then((userCredential) => {
                 updateUser({ displayName, photoURL })
                     .then(() => {
-                        console.log("profile updated");
-                        console.log(userCredential.user);
-                        toast.success(`Registration successful! Welcome ${displayName}.`)
+                        toast.success(
+                            `Registration successful! Welcome ${displayName}.`
+                        );
                     })
                     .catch((err) => {
-                        console.log(err);
+                        toast.error(err.message);
                     });
             })
             .catch((err) => {
-                setLoading(false)
-                console.log(err);
+                setLoading(false);
+                toast.error(err.message);
             });
     };
 
@@ -113,7 +117,16 @@ const Register = () => {
                             id="password"
                             placeholder="Enter your password"
                         />
-                        <span onClick={() => setShowPassword(!showPassword)} className="absolute top-1/2 -translate-y-1 right-4 cursor-pointer">{showPassword ? <FaEyeSlash size={24} /> : <FaEye size={24} />}</span>
+                        <span
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute top-1/2 -translate-y-1 right-4 cursor-pointer"
+                        >
+                            {showPassword ? (
+                                <FaEyeSlash size={24} />
+                            ) : (
+                                <FaEye size={24} />
+                            )}
+                        </span>
                     </div>
                     <div>
                         <button className="btn w-full mt-8">Sign Up</button>

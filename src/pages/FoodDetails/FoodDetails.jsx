@@ -9,7 +9,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 const FoodDetails = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
-    console.log(id);
 
     const {
         data: food,
@@ -41,8 +40,6 @@ const FoodDetails = () => {
     if (isError) {
         return <p>{error.message}</p>;
     }
-
-    console.log(food);
 
     const {
         name,

@@ -27,7 +27,6 @@ const AddFood = () => {
         formData.desc = desc;
 
         const { data } = await axiosSecure.post("/foods", formData);
-        console.log(data);
 
         if (data.insertedId) {
             toast.success("Food Added!");

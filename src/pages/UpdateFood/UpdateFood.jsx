@@ -41,8 +41,6 @@ const UpdateFood = () => {
         return <p>{error.message}</p>;
     }
 
-    console.log("update", data);
-
     const handleUpdateFood = async (e) => {
         e.preventDefault();
         const form = new FormData(e.target);
@@ -58,7 +56,6 @@ const UpdateFood = () => {
         formData.desc = desc;
 
         const { data } = await axiosSecure.put(`/food/${id}`, formData);
-        console.log(formData);
     };
 
     return (

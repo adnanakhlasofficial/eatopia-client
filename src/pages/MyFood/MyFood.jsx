@@ -40,8 +40,6 @@ const MyFood = () => {
         return <p>{error.message}</p>;
     }
 
-    console.log(data);
-
     return (
         <HelmetProvider>
             <Helmet>
