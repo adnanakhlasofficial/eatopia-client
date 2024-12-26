@@ -64,6 +64,10 @@ const FoodPurchase = () => {
             parseInt(e.target.quantity.value) + totalPurchase;
         const currentPurchase = parseInt(e.target.quantity.value);
         const remaining = totaAvailable - parseInt(e.target.quantity.value);
+        if (!currentPurchase) {
+            toast.error("Quantity must be 1 or more");
+            return console.log("object");
+        }
         const purchasedFood = {
             id,
             name: food.name,
@@ -148,6 +152,7 @@ const FoodPurchase = () => {
                             quantity:
                         </label>
                         <input
+                            autoFocus
                             className="form-input [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             min={1}
                             max={totaAvailable}

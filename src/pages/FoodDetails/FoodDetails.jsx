@@ -134,7 +134,9 @@ const FoodDetails = () => {
                     <div>
                         {user?.email !== ownerEmail && (
                             <Link
-                                onClick={() => quantity < 1 && toast.error("not available")}
+                                onClick={() =>
+                                    quantity < 1 && toast.error("Out Of Stock")
+                                }
                                 to={quantity > 0 && `/food/purchase/${id}`}
                                 className="btn w-full text-center"
                             >
