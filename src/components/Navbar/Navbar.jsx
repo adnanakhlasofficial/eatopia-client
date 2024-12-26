@@ -50,13 +50,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink
-                                className={({ isActive }) =>
-                                    `after:content[''] after:${
-                                        isActive
-                                            ? "after:w-full"
-                                            : "after:w-0"
-                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block after:w-0 hover:after:w-full after:mx-auto after:transition-all font-medium`
-                                }
+                                className={({ isActive }) => isActive ? "nav-active" : "nav-inactive"}
                                 to={"/all-foods"}
                             >
                                 All Foods
@@ -64,13 +58,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink
-                                className={({ isActive }) =>
-                                    `after:content[''] after:${
-                                        isActive
-                                            ? "after:w-full"
-                                            : "after:w-0"
-                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block after:w-0 hover:after:w-full after:mx-auto after:transition-all font-medium`
-                                }
+                                className={({ isActive }) => isActive ? "nav-active" : "nav-inactive"}
                                 to={"/gallery"}
                             >
                                 Gallery
