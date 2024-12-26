@@ -51,6 +51,7 @@ const Login = () => {
                             email:
                         </label>
                         <input
+                            required
                             className="px-4 py-2 w-full bg-gray-50 rounded-md text-gray-700 font-medium"
                             type="email"
                             name="email"
@@ -66,6 +67,7 @@ const Login = () => {
                             password:
                         </label>
                         <input
+                            required
                             className="px-4 py-2 w-full bg-gray-50 rounded-md text-gray-700 font-medium"
                             type="password"
                             name="password"

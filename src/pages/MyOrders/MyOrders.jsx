@@ -59,7 +59,7 @@ const MyOrders = () => {
             <div>
                 <Banner title={"My Orders"} img={bgImg1}></Banner>
 
-                <div className="wrapper my-12">
+                <div className="wrapper my-12 w-full overflow-x-auto">
                     <table className="text-gray-600 dark:text-gray-400 mx-auto text-sm bg bg-gray-100 dark:bg-zinc-900 rounded-md text-left">
                         <thead>
                             <tr className="dark:border-slate-600 text-gray-600 dark:text-gray-400 *:px-4 *:py-2 *:font-semibold">

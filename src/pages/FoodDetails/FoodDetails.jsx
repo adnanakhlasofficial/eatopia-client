@@ -5,10 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { ClipLoader } from "react-spinners";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const FoodDetails = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
+    const { user } = useContext(AuthContext);
 
     const {
         data: food,
@@ -128,12 +131,14 @@ const FoodDetails = () => {
                     </div>
 
                     <div>
-                        <Link
-                            to={`/food/purchase/${id}`}
-                            className="btn w-full text-center"
-                        >
-                            Purchase
-                        </Link>
+                        {user?.email !== ownerEmail &&  quantity > 0 && (
+                            <Link
+                                to={`/food/purchase/${id}`}
+                                className="btn w-full text-center"
+                            >
+                                Purchase
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

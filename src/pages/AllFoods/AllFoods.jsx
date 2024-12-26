@@ -93,7 +93,7 @@ const AllFoods = () => {
                                 }`}
                                 key={idx}
                             >
-                                {page}
+                                {idx + 1}
                             </button>
                         ))}
                 </div>

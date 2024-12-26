@@ -66,6 +66,7 @@ const Register = () => {
                             name:
                         </label>
                         <input
+                            required
                             className="px-4 py-2 w-full bg-gray-50 rounded-md text-gray-700 font-medium"
                             type="text"
                             name="name"
@@ -81,6 +82,7 @@ const Register = () => {
                             email:
                         </label>
                         <input
+                            required
                             className="px-4 py-2 w-full bg-gray-50 rounded-md text-gray-700 font-medium"
                             type="email"
                             name="email"
@@ -96,6 +98,7 @@ const Register = () => {
                             photo URL:
                         </label>
                         <input
+                            required
                             className="px-4 py-2 w-full bg-gray-50 rounded-md text-gray-700 font-medium"
                             type="url"
                             name="photo"
@@ -111,6 +114,7 @@ const Register = () => {
                             password:
                         </label>
                         <input
+                            required
                             className="px-4 py-2 w-full bg-gray-50 rounded-md text-gray-700 font-medium"
                             type={showPassword ? "text" : "password"}
                             name="password"
