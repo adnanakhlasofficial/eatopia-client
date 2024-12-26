@@ -4,6 +4,8 @@ import FoodCard from "../../components/FoodCard/FoodCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
+import { ClipLoader } from "react-spinners";
 
 const AllFoods = () => {
     const axiosSecure = useAxiosSecure();
@@ -18,13 +20,34 @@ const AllFoods = () => {
         axiosSecure.get("/count").then((res) => setCount(res.data.count));
     }, []);
 
-    useEffect(() => {
-        axiosSecure
-            .get(`/foods?page=${currentPage}&size=${foodsPerPage}`)
-            .then((res) => {
-                setFoods(res.data.result);
-            });
-    }, [currentPage]);
+    const { data, isPending, isError, error } = useQuery({
+        queryKey: ["food", currentPage],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(
+                `/foods?page=${currentPage}&size=${foodsPerPage}`
+            );
+            setFoods(data.result);
+            return data.result;
+        },
+    });
+
+    if (isPending) {
+        return (
+            <div className="h-[calc(100vh-25rem)] flex justify-center items-center">
+                <ClipLoader
+                    color={"#3B82F6"}
+                    loading={true}
+                    size={250}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+        );
+    }
+
+    if (isError) {
+        return <p>{error.message}</p>;
+    }
 
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -82,20 +105,17 @@ const AllFoods = () => {
                 </div>
 
                 <div className="flex gap-2 w-max mx-auto my-8">
-                    {count > 9 &&
-                        pages.map((page, idx) => (
-                            <button
-                                onClick={() => setCurrentPage(page)}
-                                className={`btn w-8 flex justify-center items-center ${
-                                    currentPage === page
-                                        ? "!bg-red-500"
-                                        : undefined
-                                }`}
-                                key={idx}
-                            >
-                                {idx + 1}
-                            </button>
-                        ))}
+                    {count > 9 && pages.map((page, idx) => (
+                        <button
+                            onClick={() => setCurrentPage(page)}
+                            className={`btn w-8 flex justify-center items-center ${
+                                currentPage === page ? "!bg-red-500" : undefined
+                            }`}
+                            key={idx}
+                        >
+                            {idx + 1}
+                        </button>
+                    ))}
                 </div>
             </div>
         </HelmetProvider>

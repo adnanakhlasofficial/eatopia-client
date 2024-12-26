@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import toast from "react-hot-toast";
 
 const axiosInstance = axios.create({
-    baseURL: "https://eatopia-server.vercel.app",
+    baseURL: "http://localhost:5000",
     withCredentials: true,
 });
 
