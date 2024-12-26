@@ -101,7 +101,7 @@ const FoodPurchase = () => {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>FOOD PURCHASE | EATOPIA</title>
+                <title>Food Purchase | EATOPIA</title>
                 <link rel="canonical" href="https://www.tacobell.com/" />
             </Helmet>
             <Banner title={"Food Purchase"} img={bgImg1}></Banner>

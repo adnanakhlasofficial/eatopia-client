@@ -53,11 +53,11 @@ const MyOrders = () => {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>MY ORDERS | EATOPIA</title>
+                <title>My Orders | EATOPIA</title>
                 <link rel="canonical" href="https://www.tacobell.com/" />
             </Helmet>
             <div>
-                <Banner title={"All Orders"} img={bgImg1}></Banner>
+                <Banner title={"My Orders"} img={bgImg1}></Banner>
 
                 <div className="wrapper my-12">
                     <table className="text-gray-600 dark:text-gray-400 mx-auto text-sm bg bg-gray-100 dark:bg-zinc-900 rounded-md text-left">

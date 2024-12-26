@@ -38,7 +38,7 @@ const AddFood = () => {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>ADD FOOD | EATOPIA</title>
+                <title>Add Food | EATOPIA</title>
                 <link rel="canonical" href="https://www.tacobell.com/" />
             </Helmet>
             <div className="bg-gray-200 dark:bg-neutral-800 max-w-2xl mx-auto p-8 rounded-lg my-12">

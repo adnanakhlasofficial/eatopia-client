@@ -1,5 +1,5 @@
 import Banner from "../../components/Banner/Banner";
-import bgImg1 from "../../assets/images/bgimg.jpg";
+import allFoods from "../../assets/images/all-foods.jpeg";
 import FoodCard from "../../components/FoodCard/FoodCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
@@ -44,11 +44,11 @@ const AllFoods = () => {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>ALL FOOD | EATOPIA</title>
+                <title>All Foods | EATOPIA</title>
                 <link rel="canonical" href="https://www.tacobell.com/" />
             </Helmet>
             <div>
-                <Banner title={"All Foods"} img={bgImg1}></Banner>
+                <Banner title={"All Foods"} img={allFoods}></Banner>
 
                 <div className="wrapper my-12 grid place-items-center">
                     <form

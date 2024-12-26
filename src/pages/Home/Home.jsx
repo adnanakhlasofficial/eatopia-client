@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>HOME | EATOPIA</title>
+                <title>Home | EATOPIA</title>
                 <link rel="canonical" href="https://www.tacobell.com/" />
             </Helmet>
             <Carousel></Carousel>

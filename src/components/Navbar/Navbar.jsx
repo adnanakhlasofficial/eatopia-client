@@ -31,7 +31,7 @@ const Navbar = () => {
     return (
         <div className="flex justify-between items-center py-4 wrapper relative">
             <h1>
-                <NavLink className={'flex items-center gap-3 font-bold text-2xl'} to={"/"}><img className="w-10 -rotate-12" src={mode === 'light' ? darkLogo : lightLogo } alt="logo" />EATOPIA</NavLink>
+                <NavLink className={'flex items-center gap-3 font-bold text-2xl'} to={"/"}><img className="w-10 -rotate-12" src={mode === 'light' ? darkLogo : lightLogo } alt="logo" /><span className="hidden lg:inline">EATOPIA</span></NavLink>
             </h1>
             <div className="flex items-center gap-8 lg:gap-12 lg:flex-row flex-row-reverse">
                 <div
@@ -42,13 +42,7 @@ const Navbar = () => {
                     <ul className="flex flex-col lg:flex-row gap-6 lg:items-center">
                         <li>
                             <NavLink
-                                className={({ isActive }) =>
-                                    `after:content[''] after:${
-                                        isActive
-                                            ? "after:w-full"
-                                            : "after:w-0"
-                                    } after:h-[2px] rounded-full after:bg-blue-700 after:block after:w-0 hover:after:w-full after:mx-auto after:transition-all font-medium`
-                                }
+                                className={({ isActive }) => isActive ? "nav-active" : "nav-inactive"}
                                 to={"/"}
                             >
                                 Home

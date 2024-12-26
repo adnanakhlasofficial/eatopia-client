@@ -12,6 +12,7 @@ import SecureRouter from "../SecureRouter/SecureRouter";
 import FoodDetails from "../../pages/FoodDetails/FoodDetails";
 import UpdateFood from "../../pages/UpdateFood/UpdateFood";
 import FoodPurchase from "../../pages/FoodPurchase/FoodPurchase";
+import PageNotFound from "../../pages/PageNotFound/PageNotFound";
 
 const router = createBrowserRouter([
     {
@@ -68,14 +69,26 @@ const router = createBrowserRouter([
             },
             {
                 path: "/food/purchase/:id",
-                element: <SecureRouter><FoodPurchase></FoodPurchase></SecureRouter>,
+                element: (
+                    <SecureRouter>
+                        <FoodPurchase></FoodPurchase>
+                    </SecureRouter>
+                ),
             },
             {
                 path: "/food/update/:id",
-                element: <SecureRouter><UpdateFood></UpdateFood></SecureRouter>,
+                element: (
+                    <SecureRouter>
+                        <UpdateFood></UpdateFood>
+                    </SecureRouter>
+                ),
             },
         ],
     },
+    {
+        path: "*",
+        element: <PageNotFound></PageNotFound>
+    }
 ]);
 
 export default router;

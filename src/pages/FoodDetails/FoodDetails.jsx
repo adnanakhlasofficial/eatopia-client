@@ -60,7 +60,7 @@ const FoodDetails = () => {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>FOOD DETAILS | EATOPIA</title>
+                <title>Food Details | EATOPIA</title>
                 <link rel="canonical" href="https://www.tacobell.com/" />
             </Helmet>
             <Banner title={"Food Details"} img={bgImg1}></Banner>

@@ -8,6 +8,18 @@
     .btn {
         @apply bg-blue-600 px-6 py-2 rounded-md active:scale-95 block text-slate-200 font-semibold transition-all;
     }
+    .nav-active {
+        @apply after:w-full after:h-[2px] rounded-full after:bg-blue-700 after:block  after:mx-auto after:transition-all font-medium;
+    }
+    .nav-active::after {
+        content: "";
+    }
+    .nav-inactive {
+        @apply after:w-0 after:h-[2px] rounded-full after:bg-blue-700 after:block hover:after:w-full after:mx-auto after:transition-all font-medium;
+    }
+    .nav-inactive::after {
+        content: "";
+    }
 }
 
 @layer utilities {
@@ -41,6 +53,6 @@ body {
     column-count: 3;
 }
 
-.lg-react-element:last-child {
-    align-content: left;
+.lg-react-element:first-child div {
+    margin-top: 0
 }
