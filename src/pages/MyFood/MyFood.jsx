@@ -48,7 +48,8 @@ const MyFood = () => {
             </Helmet>
 
             <div>
-                <Banner title={"All Foods"} img={allFoods}></Banner>
+                <Banner title={"My Foods"} img={allFoods}></Banner>
+                    {data.length === 0 && <h2 className="text-center text-2xl font-semibold my-20 bg-gray-100 dark:bg-zinc-900 p-3 w-max mx-auto rounded-lg">You haven’t added any food yet!</h2>}
                 <div className="wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 gap-6">
                     {data.map((food) => (
                         <FoodCard key={food._id} food={food}></FoodCard>
