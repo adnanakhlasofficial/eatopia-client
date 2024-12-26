@@ -7,8 +7,8 @@ import { HiBars3 } from "react-icons/hi2";
 import { IoCloseOutline } from "react-icons/io5";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
-import darkLogo from '../../assets/logo/dark.png';
-import lightLogo from '../../assets/logo/light.png';
+import darkLogo from "../../assets/logo/dark.png";
+import lightLogo from "../../assets/logo/light.png";
 
 const Navbar = () => {
     const { changeTheme, mode } = useMode();
@@ -31,7 +31,17 @@ const Navbar = () => {
     return (
         <div className="flex justify-between items-center py-4 wrapper relative">
             <h1>
-                <NavLink className={'flex items-center gap-3 font-bold text-2xl'} to={"/"}><img className="w-10 -rotate-12" src={mode === 'light' ? darkLogo : lightLogo } alt="logo" /><span className="hidden lg:inline">EATOPIA</span></NavLink>
+                <NavLink
+                    className={"flex items-center gap-3 font-bold text-2xl"}
+                    to={"/"}
+                >
+                    <img
+                        className="w-10 -rotate-12"
+                        src={mode === "light" ? darkLogo : lightLogo}
+                        alt="logo"
+                    />
+                    <span className="hidden lg:inline">EATOPIA</span>
+                </NavLink>
             </h1>
             <div className="flex items-center gap-8 lg:gap-12 lg:flex-row flex-row-reverse">
                 <div
@@ -42,7 +52,9 @@ const Navbar = () => {
                     <ul className="flex flex-col lg:flex-row gap-6 lg:items-center">
                         <li>
                             <NavLink
-                                className={({ isActive }) => isActive ? "nav-active" : "nav-inactive"}
+                                className={({ isActive }) =>
+                                    isActive ? "nav-active" : "nav-inactive"
+                                }
                                 to={"/"}
                             >
                                 Home
@@ -50,7 +62,9 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink
-                                className={({ isActive }) => isActive ? "nav-active" : "nav-inactive"}
+                                className={({ isActive }) =>
+                                    isActive ? "nav-active" : "nav-inactive"
+                                }
                                 to={"/all-foods"}
                             >
                                 All Foods
@@ -58,7 +72,9 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink
-                                className={({ isActive }) => isActive ? "nav-active" : "nav-inactive"}
+                                className={({ isActive }) =>
+                                    isActive ? "nav-active" : "nav-inactive"
+                                }
                                 to={"/gallery"}
                             >
                                 Gallery
@@ -116,7 +132,13 @@ const Navbar = () => {
                                         <ul className="space-y-3">
                                             <li>
                                                 <NavLink
-                                                    className={({isActive}) =>`hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${isActive ? 'bg-blue-500' : ''} w-full block`}
+                                                    className={({ isActive }) =>
+                                                        `hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${
+                                                            isActive
+                                                                ? "bg-blue-500"
+                                                                : ""
+                                                        } w-full block`
+                                                    }
                                                     to={"/my-foods"}
                                                 >
                                                     My Foods
@@ -124,7 +146,13 @@ const Navbar = () => {
                                             </li>
                                             <li>
                                                 <NavLink
-                                                    className={({isActive}) =>`hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${isActive ? 'bg-blue-500' : ''} w-full block`}
+                                                    className={({ isActive }) =>
+                                                        `hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${
+                                                            isActive
+                                                                ? "bg-blue-500"
+                                                                : ""
+                                                        } w-full block`
+                                                    }
                                                     to={"/add-food"}
                                                 >
                                                     Add Food
@@ -132,7 +160,13 @@ const Navbar = () => {
                                             </li>
                                             <li>
                                                 <NavLink
-                                                    className={({isActive}) =>`hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${isActive ? 'bg-blue-500' : ''} w-full block`}
+                                                    className={({ isActive }) =>
+                                                        `hover:bg-blue-500 transition-colors rounded-md py-1 px-2 font-medium ${
+                                                            isActive
+                                                                ? "bg-blue-500"
+                                                                : ""
+                                                        } w-full block`
+                                                    }
                                                     to={"/my-orders"}
                                                 >
                                                     My Orders

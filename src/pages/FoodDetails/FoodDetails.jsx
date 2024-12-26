@@ -7,6 +7,7 @@ import { ClipLoader } from "react-spinners";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const FoodDetails = () => {
     const { id } = useParams();
@@ -131,9 +132,10 @@ const FoodDetails = () => {
                     </div>
 
                     <div>
-                        {user?.email !== ownerEmail &&  quantity > 0 && (
+                        {user?.email !== ownerEmail && (
                             <Link
-                                to={`/food/purchase/${id}`}
+                                onClick={() => quantity < 1 && toast.error("not available")}
+                                to={quantity > 0 && `/food/purchase/${id}`}
                                 className="btn w-full text-center"
                             >
                                 Purchase

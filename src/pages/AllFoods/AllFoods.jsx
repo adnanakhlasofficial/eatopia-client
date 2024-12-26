@@ -109,7 +109,7 @@ const AllFoods = () => {
                         <button
                             onClick={() => setCurrentPage(page)}
                             className={`btn w-8 flex justify-center items-center ${
-                                currentPage === page ? "!bg-red-500" : undefined
+                                currentPage === page ? "!bg-slate-600" : undefined
                             }`}
                             key={idx}
                         >
