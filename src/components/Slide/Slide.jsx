@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Slide = ({ image, title, desc }) => {
     return (
         <div
@@ -14,6 +16,12 @@ const Slide = ({ image, title, desc }) => {
             </div>
         </div>
     );
+};
+
+Slide.propTypes = {
+    title: PropTypes.string,
+    desc: PropTypes.string,
+    image: PropTypes.string,
 };
 
 export default Slide;

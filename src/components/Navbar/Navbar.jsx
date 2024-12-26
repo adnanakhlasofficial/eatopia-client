@@ -103,7 +103,7 @@ const Navbar = () => {
                                         className="w-10 h-10"
                                     >
                                         <img
-                                            className="ring ring-blue-500 rounded-full object-center object-cover"
+                                            className="ring ring-blue-500 rounded-full object-center object-cover w-10 h-10"
                                             src={user?.photoURL}
                                             alt={user?.displayName}
                                         />
