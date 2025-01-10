@@ -13,82 +13,87 @@ import FoodDetails from "../../pages/FoodDetails/FoodDetails";
 import UpdateFood from "../../pages/UpdateFood/UpdateFood";
 import FoodPurchase from "../../pages/FoodPurchase/FoodPurchase";
 import PageNotFound from "../../pages/PageNotFound/PageNotFound";
+import Contact from "../../pages/Contact/Contact";
 
 const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Root></Root>,
+    children: [
+      {
         path: "/",
-        element: <Root></Root>,
-        children: [
-            {
-                path: "/",
-                element: <Home></Home>,
-            },
-            {
-                path: "/login",
-                element: <Login></Login>,
-            },
-            {
-                path: "/register",
-                element: <Register></Register>,
-            },
-            {
-                path: "/all-foods",
-                element: <AllFoods></AllFoods>,
-            },
-            {
-                path: "/gallery",
-                element: <Gallery></Gallery>,
-            },
-            {
-                path: "/add-food",
-                element: (
-                    <SecureRouter>
-                        <AddFood></AddFood>
-                    </SecureRouter>
-                ),
-            },
-            {
-                path: "/my-foods",
-                element: (
-                    <SecureRouter>
-                        <MyFood></MyFood>
-                    </SecureRouter>
-                ),
-            },
-            {
-                path: "/my-orders",
-                element: (
-                    <SecureRouter>
-                        <MyOrders></MyOrders>
-                    </SecureRouter>
-                ),
-            },
-            {
-                path: "/food/details/:id",
-                element: <FoodDetails></FoodDetails>,
-            },
-            {
-                path: "/food/purchase/:id",
-                element: (
-                    <SecureRouter>
-                        <FoodPurchase></FoodPurchase>
-                    </SecureRouter>
-                ),
-            },
-            {
-                path: "/food/update/:id",
-                element: (
-                    <SecureRouter>
-                        <UpdateFood></UpdateFood>
-                    </SecureRouter>
-                ),
-            },
-        ],
-    },
-    {
-        path: "*",
-        element: <PageNotFound></PageNotFound>
-    }
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/all-foods",
+        element: <AllFoods></AllFoods>,
+      },
+      {
+        path: "/gallery",
+        element: <Gallery></Gallery>,
+      },
+      {
+        path: "/add-food",
+        element: (
+          <SecureRouter>
+            <AddFood></AddFood>
+          </SecureRouter>
+        ),
+      },
+      {
+        path: "/my-foods",
+        element: (
+          <SecureRouter>
+            <MyFood></MyFood>
+          </SecureRouter>
+        ),
+      },
+      {
+        path: "/my-orders",
+        element: (
+          <SecureRouter>
+            <MyOrders></MyOrders>
+          </SecureRouter>
+        ),
+      },
+      {
+        path: "/food/details/:id",
+        element: <FoodDetails></FoodDetails>,
+      },
+      {
+        path: "/food/purchase/:id",
+        element: (
+          <SecureRouter>
+            <FoodPurchase></FoodPurchase>
+          </SecureRouter>
+        ),
+      },
+      {
+        path: "/food/update/:id",
+        element: (
+          <SecureRouter>
+            <UpdateFood></UpdateFood>
+          </SecureRouter>
+        ),
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <PageNotFound></PageNotFound>,
+  },
 ]);
 
 export default router;
